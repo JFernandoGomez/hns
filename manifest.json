@@ -1,0 +1,7 @@
+{
+  "name": "hns",
+  "short_name": "hns",
+  "description": "temporal site for hns.com",
+  "start_url": "/",
+  "display": "standalone"
+}

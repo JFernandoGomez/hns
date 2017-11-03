@@ -1,0 +1,28 @@
+{
+  "entrypoint": "index.html",
+  "shell": "src/hns-app/hns-app.html",
+  "fragments": [
+  ],
+  "lint": {
+    "rules": [ "polymer-2" ]
+  },
+  "sources": [
+    "src/**/*",
+    "images/**/*"
+  ],
+  "extraDependencies": [
+    "manifest.json",
+    "bower_components/webcomponentsjs/*.js"
+  ],
+  "builds": [
+    {
+      "preset": "es5-bundled"
+    },
+    {
+      "preset": "es6-bundled"
+    },
+    {
+      "preset": "es6-unbundled"  
+    }
+  ]
+}

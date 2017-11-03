@@ -1,0 +1,165 @@
+<link rel="import" href="../../bower_components/polymer/polymer-element.html">
+<link rel="import" href="../../bower_components/iron-ajax/iron-ajax.html">
+<link rel="import" href="../../bower_components/iron-form/iron-form.html">
+<link rel="import" href="../../bower_components/paper-input/paper-input.html">
+<link rel="import" href="../../bower_components/paper-toast/paper-toast.html">
+<dom-module id="hns-contact">
+   <template>
+      <style>
+         :host {
+            display: block;
+            width: 100%;
+         }
+
+         .size {
+            width: 100%;
+            line-height: 2;
+            --paper-input-container-color: white;
+            --paper-input-container-focus-color: #c5cae9;
+            --paper-input-container-input-color: white;
+         }
+         
+         .button {
+            background-color: #ef6942;
+            font-size: 20px;
+            font-weight: 500;
+            max-width: 700px;
+            color: #204968;
+            padding: 5px 30px;
+            margin-top: 30px;
+            margin-right: 45px;
+         }
+
+         iron-form {
+            width: 100%;
+            padding: 5px 15px;
+            transform: translateZ(0);
+         }
+         
+         #error {
+            --paper-toast-background-color: red;
+            --paper-toast-color: white;
+         }
+
+         #success {
+            --paper-toast-background-color: green;
+            --paper-toast-color: white;
+         }
+      </style>
+      <!--Shadow elements place here-->
+      <div self-center id="contactContainer"> 
+    	 <iron-form id="contactInfo" encoding="application/json">
+    	 <form method="POST" action="http://162.214.18.74:8080/easyBuilder/public/inst/contact">
+    	    <paper-input class="size" 
+    	                name="name" 
+    	                label="Name "
+    	                pattern="[a-zA-Z0-9\.\- ]*"
+    	                error-message="Special characters are not allowed"    
+    	                auto-validate
+    	                maxlength="32"
+    	                required></paper-input>
+    	    <!--paper-input class="size"
+    	                name="address"
+    	                label="Address "
+    	                pattern="[a-zA-Z0-9#\.- ]*"
+    	                error-message="Special characters are not allowed"
+    	                auto-validate
+    	                max-length="32"
+    	                required></paper-input>
+    	    <paper-input class="size"
+    	                name="zip"
+    	                label="ZIP Code"
+    	                pattern="[0-9]{5}"
+    	                error-message="Zip code should have 5 numbers"
+    	                auto-validate
+    	                max-length="5"
+    	                required></paper-input-->
+    	    <paper-input class="size"
+    	                name="city"
+    	                label="City"
+    	                pattern="[a-zA-Z ]*"
+    	                error-message="City should have only letters a-z"
+    	                auto-validate
+    	                max-length="32"
+    	                required></paper-input>
+    	    <paper-input class="size"
+    	                name="phone"
+    	                label="Phone"
+    	                pattern="[0-9\+\(\)\- ]*"
+    	                error-message="Phone should have only numbers or +,(,) and - simbols"
+    	                auto-valdiate
+    	                max-length="20"
+    	                required></paper-input>
+    	    <paper-input class="size"
+    	                name="email"
+    	                label="E-mail"
+    	                pattern="^[a-zA-Z0-9.!#$%&’*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:.[a-zA-Z0-9-]+)*$"
+    	                auto-validate
+    	                error-message="invalid E-mail address"
+    	                max-length="80"></paper-input>
+
+    	    <paper-button id="buttonSubmit" class="button" on-click="_submit" disabled$="[[isEnable()]]"  raised> GET A QUOTE </paper-button>
+    	 </form>
+    	 </iron-form>
+    	 <paper-toast id="error" class="fit-bottom">An has occurred. Please call 951-402-7663.</paper-toast>
+    	 <paper-toast id="success" class="fit-bottom" text="Thank You! Someone Will Contact You Soon."></paper-toast>
+      </div>
+   </template>
+   <script>
+      class HNSContact extends Polymer.Element {
+         static get is() {
+            return "hns-contact";
+         }
+         
+         constructor() { 
+            super();
+            this._submited = false;
+         }
+
+         connectedCallback() {
+            super.connectedCallback();
+         }
+
+         ready() {
+            super.ready();
+            this.$.contactInfo.addEventListener('iron-form-response', this._formResponseHandler.bind(this));   
+            this.$.contactInfo.addEventListener('iron-form-error', this._formErrorHandler.bind(this));  
+            this.$.error.fitInto = this.$.contactContainer;
+            this.$.success.fitInto = this.$.contactContainer; 
+         }
+         
+         isEnable() {
+            return this._submited;
+         }
+         
+         _submit () {
+           if(this.$.contactInfo.validate()) {
+               this._submited=true;
+           }
+           this.$.contactInfo.submit();
+         }
+
+         _formResponseHandler (response) {
+            console.log(`Response: ${response.detail}`);
+            this._openToast(true);
+            this.$.contactInfo.reset();
+         }
+
+         _formErrorHandler (error) {
+            console.log(`Error Detail : ${error.detail}`, error.detail);
+            this._openToast(false);
+         }
+
+         _openToast (success) {
+            if(success) {
+               this.$.success.open();            
+            } else {
+               this.$.error.open();
+               this._submited = false;
+            }
+         }
+      }
+
+      customElements.define(HNSContact.is, HNSContact);
+   </script>
+</dom-module>

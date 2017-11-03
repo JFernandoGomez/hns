@@ -1,0 +1,52 @@
+<link rel="import" href="../../bower_components/polymer/polymer-element.html">
+<dom-module id="horizontal-card">
+   <style>
+      :host {
+         disṕlay: inline; 
+      }
+      
+      .cardContainer {
+         
+      }
+      
+   </style>
+   <!-- Shadow elements start here -->
+   <div class="cardContainer" self-center>
+      
+   </div>
+   <script>
+      class HorizontalCard extends Polymer.Element {
+         static get is() {
+            return 'horizontal-card';
+         }
+
+         constructor() {
+            super();
+         }
+   
+         connectedCallback() {
+            super.connectedCallback();
+         }
+         
+         ready() {
+            super.ready();
+         }
+         
+         /**
+          * images - contains a set of images as string.
+          * width - represents the width of the card
+          */
+         static get properties() {
+            return {
+               title: String,
+               content:
+               images: {
+                  type: Array
+               },
+               width: Number
+            };
+         }
+      }
+      customElements.define(HorizontalCard.is, HorizontalCard);
+   </script>
+</dom-module>
