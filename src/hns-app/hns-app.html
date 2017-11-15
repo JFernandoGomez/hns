@@ -1,1179 +1,204 @@
 <link rel="import" href="../../bower_components/polymer/polymer-element.html">
-<link rel="import" href="../../bower_components/app-layout/app-header-layout/app-header-layout.html">
-<link rel="import" href="../../bower_components/app-layout/app-scroll-effects/effects/waterfall.html">
 <link rel="import" href="../../bower_components/app-layout/app-header/app-header.html">
+<link rel="import" href="../../bower_components/app-layout/app-header-layout/app-header-layout.html">
 <link rel="import" href="../../bower_components/app-layout/app-toolbar/app-toolbar.html">
+<link rel="import" href="../../bower_components/app-layout/app-scroll-effects/effects/waterfall.html">
+<link rel="import" href="../../bower_components/app-route/app-location.html">
+<link rel="import" href="../../bower_components/app-route/app-route.html">
+<link rel="import" href="../../bower_components/iron-pages/iron-pages.html">
 <link rel="import" href="../../bower_components/iron-flex-layout/iron-flex-layout.html">
-<link rel="import" href="../../bower_components/paper-card/paper-card.html">
-<link rel="import" href="../../bower_components/paper-button/paper-button.html">
-<link rel="import" href="../../bower_components/iron-image/iron-image.html">
-<link rel="import" href="../../bower_components/social-media-icons/social-media-icons.html">
-<link rel="import" href="../../bower_components/google-youtube/google-youtube.html">
-<link rel="import" href="hns-contact.html">
-<link rel="import" href="../../bower_components/skeleton-carousel/skeleton-carousel.html">
+<link rel="import" href="../../bower_components/iron-selector/iron-selector.html">
 <link rel="import" href="../../bower_components/google-map/google-map.html">
 <link rel="import" href="../../bower_components/google-map/google-map-marker.html">
+<link rel="import" href="../../bower_components/social-media-icons/social-media-icons.html">
+
+<link rel="lazy-import" href="hns-home.html">
+<link rel="lazy-import" href="hns-about.html">
+
 <dom-module id="hns-app">
-  <template>
-    <style>
-      :host {
-        --app-primary-color: #204968;
-        --app-secondary-color: #ef6942; 
-        --paper-card-header-text: {
-            background-color: #204968;
-            color: #f3672f;
-            width: 220px;
-            font-weight: bold;
-            font-size: 34px;
-            border-radius: 50%;
-            text-align: center;
-            opacity: 0.75   
-            
-        };
-       display: block;
-      }
-
-      app-header {
-         color: #fff;
-         background-color: var(--app-primary-color);
-      }
-
-      app-header app-paper-icon {
-         --paper-icon-button-ink-color: #fff;
-      }
-
-      header {
-         @apply --layout-vertical;
-         @apply --layout-center-center;
-         height: calc(100vh - 64px);
-         padding: 0 16px;
-         background-image: url('../../images/website-main-image.png');
-         background-repeat: no-repeat;
-         background-size: cover;
-         color: var(--app-primary-color);
-         text-align:center;
-      }
-
-      .section {
-         padding: 25px 50px;
-      }
-
-      financing-title {
-         padding: 0px;
-         margin: 0;
-      }
-      
-      .container h1 {
-         margin: 0 auto;
-         max-width: 600px;
-         font-size: 60px;
-         font-weight: bold;
-      }
-
-      .container {
-         @apply --layout-horizontal;
-         margin: 0 auto;
-         padding: 10px 25px;
-      }
-
-      .container > * {
-         @apply --layout-flex;
-      }
-      
-      .bg-white-center {
-         @apply --layout-vertical;
-         background-color: white;
-         text-align: center;
-      }
-
-      .bg-light-gray {
-         background-color: #ccc;
-         padding: 15px 50px;
-      }
-
-      .bg-green{
-         background-color: #0e823a;
-         color: white;
-         text-align: center;
-      }
-
-      .bg-blue {
-         background-color: var(--app-primary-color);
-         color: #fff;
-      }
-
-      .bg-gray {
-         background-color: var(--paper-gray-100);
-      }
-
-      .left-mx-w1600 {
-         max-width: 1600px;
-         text-align: left; 
-         margin: 0 auto;
-         padding: 0 45px; 
-         font-size: 25px; 
-      }
-
-      .max-w1000 {
-         max-width: 1000px;
-         padding: 5px 15px;
-         margin: 0 auto;
-      }
-
-      .max-w300 {
-         max-width: 300px;
-         padding: 5px 15px;
-         margin: 0 auto;
-         padding: 0 45px;
-         font-size: 18px;
-      }
-
-      .max-w600 {
-         max-width: 600px;
-         padding: 5px 15px;
-         margin: 0 auto;
-      }
-
-      .content-as-table{
-         @apply --layout-horizontal;
-         max-width: 998px;
-         display: inline-block;
-         margin: 0 auto;
-      }
-
-      .content-as-col{
-         max-width: 250px;
-         min-width: 250px;
-         font-size: 18px;
-         float: left;
-      }
-      
-      .text {
-         font-family: 'Roboto', 'Noto', sans-serif; 
-         font-size: 18px;
-         text-align: left;
-      }
-
-      .text a {
-         color: var(--app-primary-color);
-         font-size:18px; 
-         text-align: left;
-      }
-
-      .text a.orange {
-         color: var(--app-secondary-color);
-         font-size: 18px;
-         text-decoration: none;
-      }
-
-      .middle-mx-w1700 {
-         max-width: 1700px;
-         margin: 0 auto;
-         padding: 0 45px;
-         font-size: 25px;
-      }
-
-      .w1800 {
-         width: calc(100vw - 32px);
-         padding: 16px;
-         margin: 0 auto;
-      }
-
-      .padding-left-100 {
-         padding-left: 100px;
-      }
-
-      p .left-mx-w1600 a {
-         text-decoration: none;
-         color: white;
-         font-size: inherit;
-      }
-      
-      .container img {
-         max-width: 100%;
-         max-height; 100%;
-      }
-      
-      .container h2 {
-         font-size: 45px;
-         font-weight: bold 500;
-         margin: 15px 0;
-      }      
-
-      .container h3 {
-         font-size: 32px;
-         font-weight: 300;
-         margin: 10px 0;
-      }
-
-      .container p {
-         line-height: 1.2;
-      }
-
-      .container.bg-white-center p a {
-         text-decoration: none;
-         font-size: 40px;
-         color: inherit;
-      }
-      
-      .container.bg-green p a {
-         text-decoration: none;
-         font-size: 40px;
-         color: inherit;
-      }
-      .video {
-         padding: 10px 15px;
-         margin-right: 20px; 
-      }
-
-      .contact {
-         padding: 10px 15px;
-         margin: 0 auto;
-      }
-      
-      .contact h2 {
-         color: var(--app-secondary-color);
-         font-size: 30px;
-         font-weight: 500;
-         margin: 0 auto;   
-      }
-      
-      .horizontal {
-         @apply --layout-horizontal;
-         float: right;
-      }
-      
-      .vertical {
-         @apply --layout-vertical;
-      }
-      
-      .img150x300 {
-         width: 300px;
-         height: 150px;
-      }
-
-      .img150x500 {
-         width: 300px;
-         height: 150px;
-      }
-
-      .img300x300 {
-         width: 180px;
-         height: 180px;
-      }
-      
-      .description{
-         min-height: 450px;
-      }
-
-      .description p {
-         font-size: 18px;
-      }
-      
-      .company-style {
-         max-width: 600px;
-         font-size: 60px;
-         font-weight: bold;
-         color: var(--app-secondary-color);
-         background-color: var(--app-primary-color);
-         padding: 5px 8px;
-         margin: 0 auto;
-         border-radius: 50%;  
-         text-align: center;
-         margin-bottom:20px;
-         margin-top: 20px; 
-      }
-
-      paper-card {
-         max-width: 500px;
-         margin: 0 auto;
-      }
-      
-      .blue-text {
-         color: var(--app-primary-color);
-      }
-      
-      .orange {
-         color: var(--app-secondary-color);
-      }
-
-      .font-25 {
-         font-size:25px;
-      }
-
-      .font-35 {
-         font-size: 35px;
-      }
-
-      .text-center {
-         text-align: center;
-      }
-
-      .financial-company-logos {
-         margin: 8px 25px;
-      }
-
-      h1 {
-         font-size: 55px;
-         font-weight: 500;
-      }
-
-      h2 {
-         font-size: 45px;
-         font-weight: 300;
-      }
-
-      h3 {
-         font-size: 35px
-         font-weight: 300;
-      }
-     
-      .text-bold {
-         font-weight: bold;
-      }
- 
-      skeleton-carousel {
-        --skeleton-carousel: {
-          background-color: var(--paper-gray-100) ;
-        };
-        --skeleton-carousel-item: {
-          text-align: center;
-          background-color: white;
-        };
-      }
-      
-      skeleton-carousel iron-image {
-         min-height: calc(48vh - 35px);
-      }
-
-      google-map {
-         height: 300px;
-      }
-      
-      @media(max-width: 1400px){
-         
-         .container {
-            @apply --layout-vertical;
-         }
-
-         .content-as-col {
-            max-width: 220px;
-            min-width: 220px;
-            font-size: 18px;
-            float: left;
-         }
-         
-         skeleton-carousel iron-image {
-            text-align: center;
-            min-height: 300px;
-         }
-
-         .company-style {
-            width: 1200px;
-            font-size: 35px;
-            font-weight: bold;
-            color: var(--app-secondary-color);
-            background-color: var(--app-primary-color);
-            padding: 5px 8px;
-            margin: 0 auto;
-            border-radius: 50%;  
-            text-align: center;
-            margin-bottom:20px;
-            margin-top: 20px; 
-         }
-      }
-      
-      @media (max-width: 600px) {
-         .container {
-            @apply --layout-vertical;
-         }
-
-         .contact {
-            max-width: calc(100vw - 30px);
-         }
-
-         .video {
-            max-width: calc(100vw - 30px);
-         }
-         
-         .max-w600 {
-            width: 550px;
-            margin: 0 auto;
-         }
-
-         .max-w1000 {
-            width: 550px;
-            margin: 0 auto;
-         }
-
-         .img150x300 {
-             width: 250px;
-             height: 100px;  
-         }
-
-         .content-as-table {
-            width: 600px;
-            display: block;
-            padding: 5px 15px;   
-         }
-
-         .font-35 {
-            font-size: 25px;
-         }
-
-         .content-as-col {
-            width: 300px;
+   <template>
+      <style>
+         :host {
+            --app-primary-color: #204968;
+            --app-secondary-color: #ef6942;
             display: block;
          }
 
-         .company-style {
-            width: 580px;
-            font-size: 35px;
-            font-weight: bold;
-            color: var(--app-secondary-color);
+         app-header {
+            color: #fff;
             background-color: var(--app-primary-color);
-            padding: 5px 8px;
-            margin: 0 auto;
-            border-radius: 50%;  
-            text-align: center;
-            margin-bottom:20px;
-            margin-top: 20px; 
          }
-         
-         
-      }
 
-      @media (max-width: 410px) {
+         app-header app-paper-icon {
+            --app-icon-button-ink-color: #fff;
+         }
+        
+         app-toolbar a {
+            text-decoration: none;
+            color: #fff;
+         }
           
-         
-         .max-w600 {
-            width: 400px;
-            margin: 0 auto;
-         }
-
-         .max-w1000 {
-            width:  380px;
-            margin: 0 auto;
-         }
-
-         .content-as-table {
-            width: 380px;
-            display: block;
-            padding: 5px 15px;   
-         }
-
-         .content-as-col {
-            width: 200px;
-            display: block;
-         }
-
-         .company-style {
-            width: 380px;
-            font-size: 25px;
-            font-weight: bold;
-            color: var(--app-secondary-color);
+         .bg-blue {
             background-color: var(--app-primary-color);
-            padding: 5px 8px;
+         }
+
+         .orange {
+            color: var(--app-secondary-color);
+            text-decoration: none;
+            font-size: 18px;
+         }
+         
+         .container {
+            @apply --layout-horizontal;
             margin: 0 auto;
-            border-radius: 50%;  
-            text-align: center;
-            margin-bottom:20px;
-            margin-top: 20px; 
+            padding: 10px 25px;
+         }         
+         
+         .container > * {
+            @apply --layout-flex;
+         }
+
+         .max-w300 {
+            max-width: 300px;
+            min-width: 200px;
+            margin: 0 auto;
+            padding: 5px 35px;
+            font-size: 18px;
+         }
+
+         .text {
+            font-family: 'Roboto', 'Noto', sans-serif;
+            font-size: 18px;
+            text-align: left;
+         }
+         
+         p.text {
+            color: var(--app-secondary-color);
+            font-family: 'Roboto', 'Noto', sans-serif;
+            font-size: 18px;
+            text-align: left;
+
+         }
+         
+         google-map {
+            height: 300px;
+         }
+         
+         @media (max-width: 800px) {
+            .container {
+               @apply --layout-vertical;
+            }
+         }
+      </style> 
+      <app-location route="{{route}}"
+               url-space-regex="^[[rootPath]]"></app-location>
+
+      <app-route route="{{route}}"
+               pattern="[[rootPath]]:page"
+               data="{{routeData}}" 
+               tail="{{subRoute}}"></app-route>
+
+
+      <app-header-layout>
+         <app-header slot="header" reveals condenses effects="waterfall">
+            <app-toolbar>
+               <a href="[[rootPath]]home"><div main-title> Howard &amp; Sons Inc.</div></a>
+            </app-toolbar>
+         </app-header>
+
+         <iron-pages 
+               selected="[[page]]"
+               attr-for-selected="name"
+               fallback-selection="404page"
+               role="main">
+            <hns-home name="home"></hns-home>
+            <hns-about name="about"></hns-about>
+         </iron-pages>
+      
+         <div class="container bg-blue">
+            <div class="max-w300">
+               <p class="text">
+                  Corona Office: <br />
+                  357 N Sheridan St., #104 <br />
+                  Corona, CA 92880 <br />
+                  Phone: <a href="tel:9514027663" class="orange">951-402-ROOF</a> <br />
+                  Fax: 1-208-694-9322 <br />
+               <br />
+                  San Diego Office:  <br />
+                  Phone:<a href="tel:6193635447" class="orange"> (619)363-5447</a> <br />
+                <br />
+
+                  Hours: By appointment only <br />
+                  Email:<a href="mailto:info@hnsca.com" class="orange"> info@hnsca.com</a> <br />
+               </p>
+            </div>
+            <div class="max-w300">
+               <p class="text">
+                  <a href="[[rootPath]]about" class="orange"> About Us</a> <br />
+                  <a href="[[rootPath]]blog" class="orange"> Blog</a> <br />
+                  <a href="[[rootPath]]galery" class="orange"> Galery</a> <br />
+                  <a href="[[rootPath]]testimonial" class="orange"> Testimonials</a> <br />
+                  <a href="[[rootPath]]services" class="orange"> Construction Services</a>
+               </p>   
+            </div>
+            <div class="max-w300">
+               <social-media-icons icon="facebook" color="#ef6942" size="48"></social-media-icons>
+               <a href="https://www.facebook.com/Howard-Sons-Inc-1703996666539489/" class="orange" target="_blank">Howard & Sons</a> <br />
+               <social-media-icons icon="twitter" color="#ef6942" size="48"></social-media-icons>
+               <a href="https://twitter.com/hns_ca" class="orange" target="_blank">@hns_ca</a> <br />
+               <social-media-icons icon="youtube" color="#ef6942" size="48"></social-media-icons>
+               <a href="https://www.youtube.com/channel/UCMM7pYZBV3jIiTpcStROO3A" class="orange" target="_blank">Howard & Sons, Inc. </a> <br />
+            </div>
+            <div class="max-w600">
+               <google-map fit-to-marker  latitude="33.884" longitude="-117.569" zoom="14"  api-key="AIzaSyDtW2daKje2XUpPg9SgkswG9kZHLPxXztg" ><!--api-key="AIzaSyAp_dbp4u4cNv_oCV1HXriLuFIx7KHdhWY"-->
+                  <google-map-marker latitude="33.8847312" longitude="-117.5699203" label="Howard & Sons Inc." draggable="false"></google-map-marker>
+               </google-map>
+            </div>
+         </div>
+ 
+      </app-header-layout>
+   </template>
+
+   <script>
+      class HnsApp extends Polymer.Element {
+         static get is() { return 'hns-app'; }
+
+         static get observers() {
+            return ['_onRouteChanged(routeData.page)'];
+         }
+
+         static get properties() {
+            return {
+               page: {
+                  type: String,
+                  reflectToAttribute: true,
+                  observer: '_pageChanged'
+               },
+               routeData: Object,
+               rootPath: String
+            };
+         }
+
+         _onRouteChanged(page) {
+            this.page = page || 'home';
+         }
+
+         _pageChanged(page) {
+            console.log(page);
+            var resolvedPageUrl = this.resolveUrl('hns-'+ page + '.html');
+            Polymer.importHref(
+               resolvedPageUrl,
+               null,
+               this._showPage404.bind(this),
+               true);
+         }
+
+
+         _showPage404() {
+            this.page = '404page';
          }
       }
 
-     </style>
-    <app-header-layout>
-      <app-header slot="header" condenses reveals effects="waterfall">
-         <app-toolbar>
-            <div main-title>Howard &amp; Sons Inc.</div>
-         </app-toolbar>
-      </app-header>
-    </app-header-layout>
-
-   <header></header>
-   
-   <section-info>
-      <div class="container bg-white-center">
-         <h2 class="text-bold">0% DOWN 0% INTEREST</h2>
-         <p><a href="#financing">Learn more about our financing options</a></p>
-      </div>
-   </section-info>
-
-   <div class="container bg-light-gray">
-      <paper-card heading="Residential" image="../../images/residential-small.png">
-         <div class="card-content">
-            <ul>
-               <li>Residential Leak Repairs.</li>
-               <li>Residential Re-Roofs.</li>
-               <li>Rentals/Apartement complexes.</li>
-               <li>Restoration Homes.</li>
-               <li>Mobile Homes.</li>
-               <li>New Constructions.</li>
-               <li>Roof Tune-Ups.</li>
-               <li>Homes For Sale.</li>
-               <li>Rain Gutter Installation.</li>
-               <li>Attic Fan and Quietcool Fan Installations.</li>
-            </ul>
-            <div class="card-actions">
-               <div class="horizontal">
-                  <paper-button class="blue-text" on-click="_scrollTo('residential')"> More Info</paper-button>
-               </div>
-            </div>
-         </div>
-      </paper-card>
-
-      <paper-card heading="Comercial" image="../../images/commercial-small.png">
-         <div class="card-content">
-            <ul>
-               <li>Hotels.</li>
-               <li>Restaurants.</li>
-               <li>Restaurant Chains.</li>
-               <li>Retail Shops.</li>
-               <li>Strip Malls.</li>
-               <li>Condominiums Complexes.</li>
-               <li>Subdvisions.</li>
-               <li>Local Businesses.</li>
-               <li>Sheet Metal Roofing Services.</li>
-            </ul>
-            <br />
-            <div class="card-actions">
-               <div class="horizontal">
-                  <paper-button class="blue-text">More Info</paper-button>
-               </div>
-            </div>
-         </div>
-      </paper-card>
-
-      <paper-card heading="Industrial" image="../../images/industrial-small.png">
-         <div class="card-content">
-            <ul>
-               <li>Industrial Buildings.</li>
-               <li>Sheet Metal Roofing Services.</li>
-               <li>PVC or TPO Roofing.</li>
-               <li>Single Ply Roofing.</li>
-               <li>Roof Coating and Painting.</li>
-               <li>Warehouses.</li>
-               <li>Storage Units.</li>
-               <li>Metal Facades.</li>
-               <li>Waterproofing.</li>
-            </ul>
-            <br />
-            <div class="card-actions">
-               <div class="horizontal">
-                  <paper-button class="blue-text">More Info</paper-button>
-               </div>
-            </div>
-         </div>
-      </paper-card>
-   </div>
-   <div class="container bg-green"><h1> Need Financing? </h1></div>
-   <div id="financing" name="financing" class="container bg-green">
-      <p class="left-mx-w1600">
-        We can help you find the right choice of financing that will fit your budget and your dreams.
-        Being able to offer personal financing for as little as 6 months to home equity financing for
-        up to 30 years allows us to give our customers a more personal financing experience.  
-        Have a commercial job that needs financing? We can help you with that as well using our partners
-        <a href="https://www.renovateamerica.com/financing/hero" target="_blank">HERO</a>,
-        <a href="https://ygreneworks.com/?utm_source=ygrenedotcom&utm_campaign=redirect" target="_blank">Ygrene</a>,
-        <a href="https://renewfinancial.com/product/californiafirst" target="_blank">California First</a> and 
-        <a href="http://www.benjifinancing.com/" target="_blank">Benji</a>
-      </p>
-   </div>
-   <div class="contaner bg-white-center">
-      <div class="middle-mx-w1700">
-        <a href="https://www.renovateamerica.com/financing/hero" target="_blank">
-            <iron-image class="financial-company-logos img150x300" sizing="contain" src="../../images/hero-logo-350px.jpg"><iron-image>
-        </a>
-        <a href="https://ygreneworks.com/?utm_source=ygrenedotcom&utm_campaign=redirect" target="_blank">
-            <iron-image class="financial-company-logos img150x300" sizing="contain" src="../../images/ygrene-logo-350px.png"><iron-image>
-        </a>
-        <a href="https://renewfinancial.com/product/californiafirst" target="_blank">
-            <iron-image class="financial-company-logos img150x300" sizing="contain" src="../../images/california-first-350px.png"><iron-image>
-        </a>
-        <a href="http://www.benjifinancing.com/" target="_blank">
-            <iron-image class="financial-company-logos img150x300" sizing="contain" src="../../images/benji-alt-logo.png"><iron-image>
-        </a> 
-      </div>
-   </div>
-
-   <div class="container bg-blue">
-      <div class="max-w1000 video bg-blue">
-         <google-youtube
-                     video-id="OmvCojQX3EI" 
-                     rel="0" 
-                     height="500px"
-                     width="1000px"
-                     autoplay="0"></google-youtube>
-      </div>
-      <div class="max-w600 contact bg-blue">
-         <h2> GET A FREE QUOTE </h2>
-         <hns-contact></hns-contact>
-      </div>
-   </div>
-   <div class="container" id="residential">
-      <div class="company-style" > Residential </div>
-   </div>
-   <!--Residential Shingles -->
-   <div class="container">
-    <div class="max-w600 description">      
-      <skeleton-carousel dots nav loop id="resiShingles">
-         <div>
-            <iron-image placeholder="../../images/shingles/shingle-1-updated.jpg"
-                        data-src="../../images/shingles/shingle-1-updated.jpg" 
-                        sizing="contain"
-                        preload ></iron-image>
-        </div>
-        <div>
-            <iron-image placeholder="../../images/shingles/shingle-2-updated.jpg"
-                        data-src="../../images/shingles/shingle-2-updated.jpg"
-                        sizing="contain"
-                        preload ></iron-image>
-        </div>
-        <div>
-            <iron-image src="../../images/shingles/shingle-4-updated.jpg"
-                         sizing="contain"
-                         preload ></iron-image>
-        </div>
-        <div>
-            <iron-image data-src="../../images/shingles/shingle-5-updated.jpg"
-                      sizing="contain" 
-                      preload ></iron-image>
-        </div>
-        <div>
-            <iron-image data-src="../../images/shingles/shingle-7-updated.jpg"
-                         sizing="contain"
-                         preload ></iron-image>
-        </div>
-        <div>
-            <iron-image data-src="../../images/shingles/shingle-6-updated.jpg"
-                         sizing="contain"
-                         preload ></iron-image>
-        </div>
-        <div>
-            <iron-image data-src="../../images/shingles/shingle-8-updated.jpg"
-                         sizing="contain"
-                         preload ></iron-image>
-        </div>
-        <div>
-            <iron-image data-src="../../images/shingles/shingle-9-updated.jpg"
-                         sizing="contain"
-                         preload ></iron-image>
-        </div>
-        <div>
-            <iron-image data-src="../../images/shingles/shingle-010-updated.jpg"
-                         sizing="contain"
-                         preload ></iron-image>
-        </div>
-      </skeleton-carousel>
-    </div> 
-    <div class="max-w1000 description">
-      <h3 class="text-bold">Shingles</h3>
-      <p class="text">
-            Shingles are one of the most widely used roofing covers in North America because
-            they have a relatively inexpensive up-front cost and are fairly simple to install. 
-      </p>
-      <p class="text"> 
-            We have many color options and brands that we commonly work with for both title 24
-            compliance as well as HOA regulations.  We can provide you a quote for any of the
-            following types of shingles:
-      </p>
-      <div class="content-as-table">
-         <div class="content-as-col">
-            <ul>
-               <li> Asphalt shingles </li>
-               <li> Concrete shingles </li>
-               <li> Wood/Shake shingles </li>
-            </ul>
-         </div>
-         <div class="content-as-col">
-            <ul>
-               <li> Fiberglass shingles</li>
-               <li> Composite shingles </li>
-               <li> Organic shingles</li>
-            </ul>
-         </div>
-         <div class="content-as-col">
-            <ul>
-               <li> Slate shignles</li>
-               <li> Three-tab shingles</li>
-               <li> Architectural shingles</li>
-            </ul>
-         </div>
-      </div>
-      <p class="text"> Contact us for more options (951-402-ROOF) </p>
-    </div> 
-   </div>
-   <!-- Residential Tiles-->
-   <div class="container">
-    <div class="max-w600 description">
-      
-      <skeleton-carousel dots nav loop id="resiTiles">
-        <div>
-            <iron-image placeholder="../../images/tiles/tiles-1.jpg"
-                        sizing="contain"
-                        preload></iron-image>
-        </div>
-        <div>
-            <iron-image src="../../images/tiles/tiles-2.jpg" 
-                        sizing="contain" 
-                        preload ></iron-image>
-        </div>
-        <div>
-            <iron-image data-src="../../images/tiles/tiles-3.jpg"
-                        sizing="contain" 
-                        preload></iron-image>
-       </div>
-        <div>
-            <iron-image data-src="../../images/tiles/tiles-4.jpg" 
-                        sizing="contain" 
-                        preload ></iron-image>
-        </div>
-        <div>
-            <iron-image data-src="../../images/tiles/tiles-5.jpg" 
-                        sizing="contain" 
-                        preload ></iron-image>
-        </div>
-        <div>
-            <iron-image data-src="../../images/tiles/tiles-7.jpg" 
-                        sizing="contain" 
-                        preload ></iron-image>
-         </div>
-      </skeleton-carousel>
-    </div> 
-    <div class="max-w1000 description">
-      <h3>Tiles</h3>
-      <p class="text">
-         Roof tiles are traditionally made from locally available materials
-         such as terracotta or slate. Tiles may be glazed and also may have surface
-         texture treatments applied. As a result, there are a wide variety of tile profiles,
-         styles, finishes and colors available.     
-      </p>
-      <p class="text"> 
-         Installation methods depend on the nature of the tile being installed;
-         that is, whether it is two piece, one piece, interlocking or flat.
-         We work with many different types of tile roofing materials including:
-      </p>
-      <div class="content-as-table">
-         <div class="content-as-col">
-            <ul>
-               <li> Clay Tile </li>
-               <li> Spanish Tile </li>
-            </ul>
-         </div>
-         <div class="content-as-col">
-            <ul>
-               <li> Slate Tile </li>
-               <li> Synthetic Tile </li>
-            </ul>
-         </div>
-         <div class="content-as-col">
-            <ul>
-               <li> Concrete Tiles (light &amp; standard weight)</li>
-            </ul>
-         </div>
-      </div>
-      <p class="text">If you have a specific style or color in mind <a href="#"> contact us </a> now for a free quote. </p>
-    </div> 
-   </div>
-   <!-- Residential Flat-->
-   <div class="container">
-    <div class="max-w600 description">
-      
-      <skeleton-carousel dots nav loop id="resiFlat">
-        <div>
-            <iron-image placeholder="../../images/flat/flat-1.jpg"
-                        sizing="contain"
-                        preload></iron-image>
-        </div>
-        <div>
-            <iron-image src="../../images/flat/flat-2.jpg" 
-                        sizing="contain" 
-                        preload ></iron-image>
-        </div>
-        <div>
-            <iron-image data-src="../../images/flat/flat-3.jpg"
-                        sizing="contain" 
-                        preload></iron-image>
-       </div>
-        <div>
-            <iron-image data-src="../../images/flat/flat-4.jpg" 
-                        sizing="contain" 
-                        preload ></iron-image>
-        </div>
-      </skeleton-carousel>
-    </div> 
-    <div class="max-w1000 description">
-      <h3>Flat</h3>
-      <p class=text>
-         A flat roof is a roof which is almost level in contrast to the many types of sloped roofs.
-         Flat roofs are mostly used in arid climates and allow the roof space to be used as a living space or a living roof.
-         We have experience repairing or installing all of the following types of flat roofing systems:
-      </p>
-      <div class="content-as-table">
-         <div class="content-as-col">
-            <ul>
-               <li> Felt roof </li>
-               <li> Torchdown </li>
-               <li> Mastic asphalt </li>
-            </ul>
-         </div>
-         <div class="content-as-col">
-            <ul>
-               <li> Fibreglass </li>
-               <li> PVC single-ply membrane </li>
-            </ul>
-         </div>
-         <div class="content-as-col">
-            <ul>
-               <li> TPO Single-ply  membrane</li>
-               <li> Foam </li>
-            </ul>
-         </div>
-      </div>
-      <p class="text"><a href="#">Contact us</a> or call to set up a time for your free quote </p>
-    </div> 
-   </div>
-   <!-- Residential Metal-->
-   <div class="container">
-    <div class="max-w600 description">
-      
-      <skeleton-carousel dots nav loop id="resiMetal">
-        <div>
-            <iron-image placeholder="../../images/metal/metal-1.jpg"
-                        sizing="contain"
-                        preload></iron-image>
-        </div>
-        <div>
-            <iron-image src="../../images/metal/metal-2.jpg" 
-                        sizing="contain" 
-                        preload ></iron-image>
-        </div>
-        <div>
-            <iron-image data-src="../../images/metal/metal-3.jpg"
-                        sizing="contain" 
-                        preload></iron-image>
-       </div>
-        <div>
-            <iron-image data-src="../../images/metal/metal-4.jpg" 
-                        sizing="contain" 
-                        preload ></iron-image>
-        </div>
-        <div>
-            <iron-image data-src="../../images/metal/metal-5.jpg" 
-                        sizing="contain" 
-                        preload ></iron-image>
-        </div>
-        <div>
-            <iron-image data-src="../../images/metal/metal-6.jpg" 
-                        sizing="contain" 
-                        preload ></iron-image>
-        </div>
-        <div>
-            <iron-image data-src="../../images/metal/metal-7.jpg" 
-                        sizing="contain" 
-                        preload ></iron-image>
-        </div>
-        <div>
-            <iron-image data-src="../../images/metal/metal-8.jpg" 
-                        sizing="contain" 
-                        preload ></iron-image>
-        </div>
-      </skeleton-carousel>
-    </div> 
-    <div class="max-w1000 description">
-      <h3>Metal/Specialty Roofing</h3>
-      <p class=text>
-         Residential metal roofing is primarily made of steel or aluminum. Copper, zinc and titanium are also
-          used in specialized architectural applications for homes. Steel roofing for residential applications
-          is very lightweight with the heaviest product weighing about 1.5 pounds per square foot when installed.
-          Not to mention Title 24 compliant.  We use a Kynar 500 paint finish with has a 45 year non-prorated warranty
-          against fade, chipping or cracking.  It also comes in a wide variety of colors.
-          <a href="https://metalroofing.com" target="_blank">  Click here </a>
-          to learn more about metal roofs. 
-      </p>
-      <p class="text"> 
-          Our representatives can also answer all your questions about metal roofs as well as show you sample options and colors.
-      </p>
-      <div class="content-as-table">
-         <div class="content-as-col">
-            <ul>
-               <li> Cooper Metal Roofing </li>
-               <li> Standing Seam Metal Roofing systems</li>
-            </ul>
-         </div>
-         <div class="content-as-col">
-            <ul>
-               <li> Metal Shingles Roofs </li>
-               <li> Aluminium Shake Roofs </li>
-            </ul>
-         </div>
-         <div class="content-as-col">
-            <ul>
-               <li> Metal Tile Roofs</li>
-               <li> Metal Slate Roofs </li>
-               <li> Green, "Eco-Friendly" Roofing Systems </li>
-            </ul>
-         </div>
-      </div>
-    </div> 
-   </div>
-
-   <!--div class="container bg-blue">
-   </div-->
-
-   <div class="container bg-blue">
-      <div class="max-w600 bg-blue">
-        <h2 class="max-w1000 blue-bg orange text-bold"> GET A FREE QUOTE! </h2>
-        <p class="text orange font-35 text-centered"> 
-            Call 951-402-ROOF (7663) to set up your FREE quote appointment,
-            or fill out this form and a representative will be in touch with you soon! 
-         </p>
-      </div>
-      <div class="max-w600 bg-blue">
-         <hns-contact></hns-contact>
-      </div>
-   </div>
-   <!-- COMERCIAL -->
-
-   <div class="container" id="residential">
-      <div class="company-style" > Commercial &amp; <br/> Industrial </div>
-   </div>
-   <!-- -->
-   <div class="container">
-    <div class="max-w1000 description">
-      
-      <p class=text>
-         <strong>Howard &amp; Sons, Inc </strong>. has a lot of experience working on commercial projects both large and small.
-         We have worked with many general contractors as well as directly with clients to carry out projects as
-         small as restaurant roof builds and as large as hotels and condominiums with over 180 units.  
-      </p>
-      <p class="text"> 
-          Contact us today for a quote on your project.  We can install or repair any of the following:
-      </p>
-      <div class="content-as-table">
-         <div class="content-as-col">
-            <ul>
-               <li> Single Ply Roofing</li>
-               <li> PVC Roofing (Duro-Last)</li>
-               <li> TPO Roofing (Firestone)</li>
-            </ul>
-         </div>
-         <div class="content-as-col">
-            <ul>
-               <li> Roof Coatings (Silicon or Hybrid Acrylic)</li>
-               <li> Waterproofing </li>
-               <li> Metal Roofing </li>
-            </ul>
-         </div>
-         <div class="content-as-col">
-            <ul>
-               <li> Curved Metal Roofing </li>
-               <li> Sheet Metal Work </li>
-               <li> Roofing Sealing </li>
-               <li> And more...</li>
-            </ul>
-         </div>
-      </div>
-    </div> 
-    <div class="max-w600 description">
-      
-      <skeleton-carousel dots nav loop id="comme">
-        <div>
-            <iron-image placeholder="../../images/commertial/comm-1.jpg"
-                        sizing="contain"
-                        preload></iron-image>
-        </div>
-        <div>
-            <iron-image src="../../images/commertial/comm-2.jpg" 
-                        sizing="contain" 
-                        preload ></iron-image>
-        </div>
-        <div>
-            <iron-image data-src="../../images/commertial/comm-3.jpg"
-                        sizing="contain" 
-                        preload></iron-image>
-       </div>
-        <div>
-            <iron-image data-src="../../images/commertial/comm-4.jpg" 
-                        sizing="contain" 
-                        preload ></iron-image>
-        </div>
-        <div>
-            <iron-image data-src="../../images/commertial/comm-5.jpg" 
-                        sizing="contain" 
-                        preload ></iron-image>
-        </div>
-        <div>
-            <iron-image data-src="../../images/commertial/comm-6.jpg" 
-                        sizing="contain" 
-                        preload ></iron-image>
-        </div>
-        <div>
-            <iron-image data-src="../../images/commertial/comm-7.jpg" 
-                        sizing="contain" 
-                        preload ></iron-image>
-        </div>
-        <div>
-            <iron-image data-src="../../images/commertial/comm-8.jpg" 
-                        sizing="contain" 
-                        preload ></iron-image>
-        </div>
-        <div>
-            <iron-image data-src="../../images/commertial/comm-9.jpg" 
-                        sizing="contain" 
-                        preload ></iron-image>
-        </div>
-        <div>
-            <iron-image data-src="../../images/commertial/comm-10.jpg" 
-                        sizing="contain" 
-                        preload ></iron-image>
-        </div>
-      </skeleton-carousel>
-    </div> 
-   </div>
-   <div class="container bg-gray">
-     <div class="max-w1000 text-center"> <h2 class="text-bold">Using only the highest quality products!</h2> </div>
-   </div>
-   <div class="container">
-      <div class="w1800 text-center">
-         <iron-image class="financial-company-logos img150x300" 
-                     src="../../images/logos/certainteed-logo.jpg"
-                     sizing="contain"
-                     preload ></iron-image>
-         <iron-image class="financial-company-logos img150x300" 
-                     src="../../images/logos/Durolast-logo.jpg"
-                     sizing="contain"
-                     preload ></iron-image>
-         <iron-image class="financial-company-logos img150x300" 
-                     src="../../images/logos/firestoneroofinglogo.jpg"
-                     sizing="contain"
-                     preload ></iron-image>
-         <iron-image class="financial-company-logos img150x300" 
-                     src="../../images/logos/metal-sales.jpg"
-                     sizing="contain"
-                     preload ></iron-image>
-      </div>
-   </div>
-   <div class="container">    
-      <div class="w1800 text-center">
-         <iron-image class="financial-company-logos img150x300" 
-                     src="../../images/logos/NuRay-Metals.gif"
-                     sizing="contain"
-                     preload ></iron-image>
-         <iron-image class="financial-company-logos img150x300" 
-                     src="../../images/logos/Owens-Corning-FB.jpg"
-                     sizing="contain"
-                     preload ></iron-image>
-         <iron-image class="financial-company-logos img150x300" 
-                     src="../../images/logos/steel-rock-logo.jpg"
-                     sizing="contain"
-                     preload ></iron-image>
-         <iron-image class="financial-company-logos img150x300" 
-                     src="../../images/logos/Taylor-Metal-Products-logo.jpg"
-                     sizing="contain"
-                     preload ></iron-image>
-      </div>    
-   </div>
-   <div class="container">    
-      <div class="w1800 text-center">
-         <iron-image class="financial-company-logos img300x300" 
-                     src="../../images/logos/atas-logo.jpg"
-                     sizing="contain"
-                     preload ></iron-image>
-         <iron-image class="financial-company-logos img300x300" 
-                     src="../../images/logos/eagle-roofing-products.jpg"
-                     sizing="contain"
-                     preload ></iron-image>
-         <iron-image class="financial-company-logos img300x300" 
-                     src="../../images/logos/IKOLogo.jpg"
-                     sizing="contain"
-                     preload ></iron-image>
-      </div>    
-   </div>
-   <div class="container bg-blue">
-      <div class="max-w300">
-         <p class="text">
-            Corona Office: <br />
-            357 N Sheridan St., #104 <br />
-            Corona, CA 92880 <br />
-            Phone: <a href="tel:9514027663" class="orange">951-402-ROOF</a> <br />
-            Fax: 1-208-694-9322 <br />
-         <br />
-            San Diego Office:  <br />
-            Phone:<a href="tel:6193635447" class="orange"> (619)363-5447</a> <br />
-          <br />
-
-            Hours: By appointment only <br />
-            Email:<a href="mailto:info@hnsca.com" class="orange"> info@hnsca.com</a> <br />
-         </p>
-      </div>
-      <div class="max-w300">
-         <p class="text">
-            <a href="" class="orange"> About Us</a> <br />
-            <a href="" class="orange"> Blog</a> <br />
-            <a href="" class="orange"> Galery</a> <br />
-            <a href="" class="orange"> Testimonials</a> <br />
-            <a href="" class="orange"> Construction Services</a>
-         </p>   
-      </div>
-      <div class="max-w300">
-         <social-media-icons icon="facebook" color="#ef6942" size="48"></social-media-icons> <br/>
-         <social-media-icons icon="twitter" color="#ef6942" size="48"></social-media-icons> <br />
-         <social-media-icons icon="youtube" color="#ef6942" size="48"></social-media-icons> <br />
-      </div>
-      <div class="max-w600">
-         <google-map fit-to-marker  latitude="33.884" longitude="-117.569" zoom="14"  api-key="AIzaSyDtW2daKje2XUpPg9SgkswG9kZHLPxXztg" ><!--api-key="AIzaSyAp_dbp4u4cNv_oCV1HXriLuFIx7KHdhWY"-->
-            <google-map-marker latitude="33.8847312" longitude="-117.5699203" label="Howard & Sons Inc." draggable="false"></google-map-marker>
-         </google-map>
-      </div>
-   </div>
-  </template>
-   
-  <script>
-    /**
-     * @customElement
-     * @polymer
-     */
-    class HnsApp extends Polymer.Element {
-      static get is() { return 'hns-app'; }
-      static get properties() {
-        return {
-          prop1: {
-            type: String,
-            value: 'hns-app'
-          }
-        };
-      }
-
-      ready() {
-         super.ready();
-         setInterval(this._automoveResidential.bind(this), 5000);
-      }
-
-      constructor() {
-         super();
-      }
-
-      connectedCallback() {
-         super.connectedCallback();
-      }
-
-      _automoveResidential(){
-         this.$.resiShingles.selected++;
-         this.$.resiTiles.selected++;
-         this.$.resiFlat.selected++;
-         this.$.resiMetal.selected++;
-         this.$.comme.selected++;
-      }
-      
-      _scrollTo(elem) {
-         let element = this.$(elem);
-         element.scrollIntoView();
-      }    
- 
-    }
-
-    window.customElements.define(HnsApp.is, HnsApp);
-  </script>
+      window.customElements.define(HnsApp.is, HnsApp);   
+   </script>
 </dom-module>
