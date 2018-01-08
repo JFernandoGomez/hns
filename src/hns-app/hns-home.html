@@ -347,6 +347,7 @@
           text-align: center;
           background-color: white;
         };
+         --skeleton-carousel-min-height: 200px;
       }
       
       skeleton-carousel iron-image {
@@ -448,7 +449,10 @@
       }
 
       @media (max-width: 410px) {
-          
+         header {
+           background-image: url('../../images/header-cel.jpg');
+           padding: 0; 
+         } 
          
          .max-w600 {
             width: 400px;
@@ -483,6 +487,63 @@
             text-align: center;
             margin-bottom:20px;
             margin-top: 20px; 
+         }
+
+         
+      }
+
+      @media (max-width: 360px) {
+         
+         header {
+           background-image: url('../../images/header-cel.jpg');
+         } 
+         
+         .container {
+            padding: 5px 3px;
+         }
+         
+         .max-w600 {
+            width: 300px;
+            margin: 0 auto;
+         }
+
+         .max-w1000 {
+            width:  300px;
+            margin: 0 auto;
+         }
+
+         .content-as-table {
+            width: 300px;
+            display: block;
+            padding: 3px 7px;   
+         }
+
+         .content-as-col {
+            width: 300px;
+            display: block;
+         }
+
+         .company-style {
+            width: 300px;
+            font-size: 22px;
+            font-weight: bold;
+            color: var(--app-secondary-color);
+            background-color: var(--app-primary-color);
+            padding: 5px 8px;
+            margin: 0 auto;
+            border-radius: 50%;  
+            text-align: center;
+            margin-bottom:15px;
+            margin-top: 15px; 
+         }
+         
+         iron-form {
+             width: 80%;
+         }
+
+         skeleton-carousel iron-image {
+            text-align: center;
+            min-height: 150px;
          }
       }
 

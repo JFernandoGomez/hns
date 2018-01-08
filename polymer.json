@@ -2,13 +2,20 @@
   "entrypoint": "index.html",
   "shell": "src/hns-app/hns-app.html",
   "fragments": [
+      "src/hns-app/hns-home.html",
+      "src/hns-app/hns-gallery.html",
+      "src/hns-app/hns-contactus.html",
+      "src/hns-app/hns-contact.html",
+      "src/hns-app/hns-about.html",
+      "src/hns-app/custom-gallery.html"
   ],
   "lint": {
     "rules": [ "polymer-2" ]
   },
   "sources": [
     "src/**/*",
-    "images/**/*"
+    "images/**/*",
+    "bower.json"
   ],
   "extraDependencies": [
     "manifest.json",

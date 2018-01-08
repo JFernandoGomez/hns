@@ -13,7 +13,7 @@
          .container {
             @apply --layout-horizontal;
             margin: 0 auto;
-            padding: 10px 25px;
+            padding: 20px 25px;
          }
 
          .container > * {
@@ -32,7 +32,7 @@
 
          .container p {
             max-width: 1024px;
-            font-size: 18px;
+            font-size: 28px;
             margin: 0 auto;
          }
 
@@ -41,14 +41,31 @@
          }
 
          .bg-grey {
-            background-color: var(--google-grey-300);
+            background-color: #ccc; /*var(--google-grey-300);*/
+         }
+
+         .sub-container {
+            max-width: 1024px;
+            display: inline;
+            margin: 0 auto;
+         }
+
+         .sub-container p {
+            padding: 25px;
+            width: 550px;
+            font-size: 20px;
+         }
+
+         .company-photo {
+            width: 420px;
+            height: 250px;
          } 
       
          .circle {
             display: inline-block;
             max-width: 600px;
-            height: 150px;
-            padding: 5px 8px;
+            height: 110px;
+            padding: 25px 10px;
             font-size: 60px;
             font-weight: bold;
             color: var(--app-secondary-color);
@@ -71,13 +88,15 @@
       </div>
 
       <div class="container">
-         <iron-image src="../../images/" ></iron-image>
-         <p>
-            <strong> 
-               &quot;Our upmostconcern in this company is to provide great value at an affordable cost&quot;
-            </strong> <br />
-            <i>- Dustyn Howard</i>
-         </p> 
+         <div class="sub-container">
+            <iron-image src="../../images/about-us/company-photo.jpeg" sizing="contain" class="company-photo" ></iron-image>
+            <p style="float: right;">
+               <strong> 
+                  &quot;Our utmost concern in this company is to provide great value at an affordable cost&quot;
+               </strong> <br />
+               <i>- Dustyn Howard</i>
+            </p>
+         </div> 
       </div>
 
       <div class="container">
@@ -89,10 +108,10 @@
              available in the industry. 
          </p>
       </div>
-      <div class="container bg-grey">
+      <div class="container">
          <div class="circle"> Company Vision </div>
       </div>
-      <div class="container bg-grey">
+      <div class="container">
          <p>
             Provide the best quality installation in the most professional manner. And by doing this providing
              our employees a great life where they are proud of their work. 
@@ -102,7 +121,7 @@
          <div class="circle"> Service Area </div>
       </div>
       <div class="container">
-         <p>
+         <p style="font-size:22px">
             <strong>Howard &amp; Sons Service Area Includes</strong>: <br />
             <strong>Riverside County </strong>, Banning, Beaumont, Corona, Homeland, Lake Elsinore, Mira Loma, Moreno Valley,
                 Mountain Center, Norco, Perris, Riverside.<br />

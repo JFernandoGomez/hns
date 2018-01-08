@@ -10,17 +10,20 @@
 <link rel="import" href="../../bower_components/iron-selector/iron-selector.html">
 <link rel="import" href="../../bower_components/google-map/google-map.html">
 <link rel="import" href="../../bower_components/google-map/google-map-marker.html">
+<link rel="import" href="../../bower_components/paper-menu-button/paper-menu-button.html">
 <link rel="import" href="../../bower_components/social-media-icons/social-media-icons.html">
 
 <link rel="lazy-import" href="hns-home.html">
 <link rel="lazy-import" href="hns-about.html">
-
+<link rel="lazy-import" href="hns-gallery.html">
+<link rel="lazy-import" href="hns-contactus.html">
 <dom-module id="hns-app">
    <template>
       <style>
          :host {
             --app-primary-color: #204968;
             --app-secondary-color: #ef6942;
+            --paper-menu-button-dropdown-background: #204968;
             display: block;
          }
 
@@ -34,8 +37,16 @@
          }
         
          app-toolbar a {
+            width: -webkit-fill-available;
             text-decoration: none;
             color: #fff;
+         }
+
+         app-toolbar span {
+            text-align: right;
+            position:float;
+            width: 100px;
+            float: right;
          }
           
          .bg-blue {
@@ -79,7 +90,22 @@
             text-align: left;
 
          }
-         
+
+         .menu-right {
+             display: block;
+             width: -webkit-fill-available;  
+             text-align: right; 
+         }
+        
+         .menu-right a {
+            padding-right: 10px;
+            margin-right: 20px;
+         }
+
+         paper-menu-button {
+            display: none;
+         }
+ 
          google-map {
             height: 300px;
          }
@@ -87,6 +113,24 @@
          @media (max-width: 800px) {
             .container {
                @apply --layout-vertical;
+            }
+            
+            .menu-right {
+               display: none;
+            }
+
+            paper-menu-button {
+               display: block;
+            }
+            
+            app-toolbar a {
+               width: 500px;
+            }
+
+            paper-item {
+               display: block;
+               padding: 9px 11px;
+               width: 200px;
             }
          }
       </style> 
@@ -101,8 +145,24 @@
 
       <app-header-layout>
          <app-header slot="header" reveals condenses effects="waterfall">
+            
             <app-toolbar>
+            <paper-menu-button>
+              <paper-icon-button icon="menu" slot="dropdown-trigger" alt="menu"></paper-icon-button>
+              <paper-listbox slot="dropdown-content">
+                <paper-item><a href="[[rootPath]]home">Home</a></paper-item>
+                <paper-item><a href="[[rootPath]]gallery">Gallery</a></paper-item>
+                <paper-item><a href="[[rootPath]]about">About Us</a></paper-item>
+                <paper-item><a href="[[rootPath]]contactus">Contact Us</a></paper-item>
+              </paper-listbox>
+            </paper-menu-button>
                <a href="[[rootPath]]home"><div main-title> Howard &amp; Sons Inc.</div></a>
+               <div class="menu-right">
+                  <a href="[[rootPath]]home">Home</a>
+                  <a href="[[rootPath]]gallery">Gallery</a>
+                  <a href="[[rootPath]]about">About Us</a>
+                  <a href="[[rootPath]]contactus">Contact Us</a>
+               </div>
             </app-toolbar>
          </app-header>
 
@@ -113,6 +173,8 @@
                role="main">
             <hns-home name="home"></hns-home>
             <hns-about name="about"></hns-about>
+            <hns-gallery name="gallery"></hns-gallery>
+            <hns-contactus name="contactus"></hns-contactus>
          </iron-pages>
       
          <div class="container bg-blue">
@@ -135,10 +197,10 @@
             <div class="max-w300">
                <p class="text">
                   <a href="[[rootPath]]about" class="orange"> About Us</a> <br />
-                  <a href="[[rootPath]]blog" class="orange"> Blog</a> <br />
-                  <a href="[[rootPath]]galery" class="orange"> Galery</a> <br />
-                  <a href="[[rootPath]]testimonial" class="orange"> Testimonials</a> <br />
-                  <a href="[[rootPath]]services" class="orange"> Construction Services</a>
+                  <a href="https://howardsonsinc.tumblr.com/" target="_blank" class="orange"> Blog</a> <br />
+                  <a href="[[rootPath]]gallery" class="orange"> Gallery</a> <br />
+                  <a href="[[rootPath]]contactus" class="orange"> Contact Us</a> <br />
+                  <!--a href="[[rootPath]]services" class="orange"> Construction Services</a -->
                </p>   
             </div>
             <div class="max-w300">
@@ -150,7 +212,7 @@
                <a href="https://www.youtube.com/channel/UCMM7pYZBV3jIiTpcStROO3A" class="orange" target="_blank">Howard & Sons, Inc. </a> <br />
             </div>
             <div class="max-w600">
-               <google-map fit-to-marker  latitude="33.884" longitude="-117.569" zoom="14"  api-key="AIzaSyDtW2daKje2XUpPg9SgkswG9kZHLPxXztg" ><!--api-key="AIzaSyAp_dbp4u4cNv_oCV1HXriLuFIx7KHdhWY"-->
+               <google-map fit-to-marker  latitude="33.884" longitude="-117.569" zoom="14"  api-key="AIzaSyAp_dbp4u4cNv_oCV1HXriLuFIx7KHdhWY" ><!--api-key="AIzaSyAp_dbp4u4cNv_oCV1HXriLuFIx7KHdhWY"-->
                   <google-map-marker latitude="33.8847312" longitude="-117.5699203" label="Howard & Sons Inc." draggable="false"></google-map-marker>
                </google-map>
             </div>

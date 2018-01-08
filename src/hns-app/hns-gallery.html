@@ -1,0 +1,129 @@
+<link rel="import" href="../../bower_components/polymer/polymer-element.html">
+<link rel="import" href="../../bower_components/photo-gallery/photo-gallery.html">
+<link rel="import" href="custom-gallery.html">
+<dom-module id="hns-gallery">
+   <template>
+      <style>
+         :host {
+            --app-primary-color: #204968;
+            --app-secondary-color: #ef6942;
+            font-family: 'Roboto', 'Noto', sans-serif;
+         }
+
+         .container {
+            @apply --layout-horizontal;
+            max-width: 1024px;
+            margin: 0 auto;
+            padding: 20px 25px;
+         }
+/*
+         .container > * {
+            @apply --layout-flex;
+         }
+  */       
+         .container h1 {
+            font-size: 53px;
+            font-weight: bold;
+         }
+         
+         .toolbar {
+            position: fixed;
+            top: 80px;
+            right: 80px;
+            left: 80px;
+         }
+
+      </style>
+      <div class="container">
+         <h1> Gallery </h1>
+      </div>
+      <div class="container">
+         <custom-gallery id="gallery" height="200">
+            <div class="item" data-url="../../images/gallery/001.jpg"></div>
+            <div class="item" data-url="../../images/gallery/002.jpg"></div>
+            <div class="item" data-url="../../images/gallery/003.jpg"></div>
+            <div class="item" data-url="../../images/gallery/004.jpg"></div>
+            <div class="item" data-url="../../images/gallery/005.jpg"></div>
+            <div class="item" data-url="../../images/gallery/006.jpg"></div>
+            <div class="item" data-url="../../images/gallery/007.jpg"></div>
+            <div class="item" data-url="../../images/gallery/008.jpg"></div>
+            <div class="item" data-url="../../images/gallery/009.jpg"></div>
+            <div class="item" data-url="../../images/gallery/010.jpg"></div>
+            <div class="item" data-url="../../images/gallery/011.jpg"></div>
+            <div class="item" data-url="../../images/gallery/012.jpg"></div>
+            <div class="item" data-url="../../images/gallery/013.jpg"></div>
+            <div class="item" data-url="../../images/gallery/014.jpg"></div>
+            <div class="item" data-url="../../images/gallery/015.jpg"></div>
+            <div class="item" data-url="../../images/gallery/016.jpg"></div>
+            <div class="item" data-url="../../images/gallery/017.jpg"></div>
+            <div class="item" data-url="../../images/gallery/018.jpg"></div>
+            <div class="item" data-url="../../images/gallery/019.jpeg"></div>
+            <div class="item" data-url="../../images/gallery/020.jpeg"></div>
+            <div class="item" data-url="../../images/gallery/021.jpeg"></div>
+            <div class="item" data-url="../../images/gallery/022.jpeg"></div>
+            <div class="item" data-url="../../images/gallery/023.jpeg"></div>
+            <div class="item" data-url="../../images/gallery/024.jpg"></div>
+            <div class="item" data-url="../../images/gallery/025.jpg"></div>
+            <div class="item" data-url="../../images/gallery/026.jpg"></div>
+            <div class="item" data-url="../../images/gallery/027.jpg"></div>
+            <div class="item" data-url="../../images/gallery/028.jpg"></div>
+            <div class="item" data-url="../../images/gallery/029.jpg"></div>
+            <div class="item" data-url="../../images/gallery/030.jpg"></div>
+            <div class="item" data-url="../../images/gallery/031.jpg"></div>
+            <div class="item" data-url="../../images/gallery/032.jpg"></div>
+            <div class="item" data-url="../../images/gallery/033.jpg"></div>
+            <div class="item" data-url="../../images/gallery/034.jpg"></div>
+            <div class="item" data-url="../../images/gallery/035.jpg"></div>
+            <div class="item" data-url="../../images/gallery/036.jpg"></div>
+            <div class="item" data-url="../../images/gallery/037.jpg"></div>
+            <div class="item" data-url="../../images/gallery/038.jpg"></div>
+            <div class="item" data-url="../../images/gallery/039.jpg"></div>
+            <div class="item" data-url="../../images/gallery/040.jpg"></div>
+            <div class="item" data-url="../../images/gallery/041.jpg"></div>
+            <div class="item" data-url="../../images/gallery/042.jpg"></div>
+            <div class="item" data-url="../../images/gallery/043.jpg"></div>
+            <div class="item" data-url="../../images/gallery/044.jpg"></div>
+            <div class="item" data-url="../../images/gallery/045.jpg"></div>
+            <div class="item" data-url="../../images/gallery/046.jpg"></div>
+            <div class="item" data-url="../../images/gallery/047.jpeg"></div>
+            <div class="item" data-url="../../images/gallery/048.jpeg"></div>
+            <div class="item" data-url="../../images/gallery/049.jpeg"></div>
+            <div class="item" data-url="../../images/gallery/050.jpeg"></div>
+            <div class="item" data-url="../../images/gallery/051.jpeg"></div>
+            <div class="item" data-url="../../images/gallery/052.jpeg"></div>
+            <div class="item" data-url="../../images/gallery/053.jpeg"></div>
+            <div class="item" data-url="../../images/gallery/054.jpeg"></div>
+            <div class="item" data-url="../../images/gallery/055.jpeg"></div>
+            <div class="item" data-url="../../images/gallery/056.jpeg"></div>
+            <div class="item" data-url="../../images/gallery/057.jpeg"></div>
+            <div class="item" data-url="../../images/gallery/058.jpeg"></div>
+         </custom-gallery>
+      </div>      
+   </template>
+   <script>
+      class HnsGallery extends Polymer.Element {
+         static get is() {
+            return 'hns-gallery';
+         }
+
+         static get properties() {
+            return {};
+         }
+
+         
+         
+         ready() {
+            super.ready();
+            console.log(this.$.gallery.shadowRoot);
+            console.log(this.$$);
+            console.log(document.querySelector('#gallery::shadow'));
+         }
+         
+         _close(event) {
+           console.log('close');
+         }
+      }
+
+      window.customElements.define(HnsGallery.is, HnsGallery);
+   </script>
+</dom-module>

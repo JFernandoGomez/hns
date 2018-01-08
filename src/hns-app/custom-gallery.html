@@ -1,0 +1,115 @@
+<link rel="import" href="../../bower_components/photo-gallery/photo-gallery.html">
+<dom-module id="custom-gallery">
+<template>
+   <style>
+      :host {
+        display: block;
+      }
+      .grid {
+        display: flex;
+        flex-wrap: wrap;
+        margin: -4px;
+      }
+      .grid ::slotted(.item) {
+        flex-grow: 1;
+        margin: 4px;
+        background-position: center;
+        background-repeat: no-repeat;
+        background-size: cover;
+        cursor: pointer;
+      }
+      .slideshow {
+        position: fixed;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        left: 0;
+        z-index: 2400;
+        display: none;
+        background-color: black;
+        user-select: none;
+      }
+      .slide {
+        position: absolute;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        left: 0;
+        max-width: 100%;
+        max-height: 100%;
+        margin: auto;
+      }
+      .chevron {
+        position: absolute;
+        top: 50%;
+        margin-top: -18px;
+        transition: opacity 0.25s ease-in-out;
+        opacity: 0.2;
+        --photo-gallery-icon: {
+          width: 36px;
+          height: 36px;
+        };
+      }
+      .chevron:hover {
+        opacity: 1;
+      }
+      .chevron:first-of-type {
+        left: 24px;
+      }
+      .chevron:last-of-type {
+        right: 24px;
+      }
+      .toolbar {
+        position: fixed;
+        top: 50px;
+        right: 0;
+        left: 0;
+        z-index: 2400;
+        height: 64px;
+        background-image: linear-gradient(black, transparent);
+        transform: translateY(-100%);
+        transition: transform 0.25s ease-in-out 0.05s;
+        visibility: hidden;
+        will-change: transform;
+      }
+      .toolbar[visible] {
+        transform: translateY(0);
+        visibility: visible;
+      }
+      .back {
+        padding: 20px 24px;
+      }
+    </style>
+
+    <div class='grid' on-click='open'>
+      <slot id='grid'></slot>
+    </div>
+
+    <div class='slideshow' id='slideshow'>
+      <img class='slide' id='slide'>
+      <img class='slide' style='display: none' id='exitSlide'>
+      <photo-gallery-icon class='chevron' icon='chevron-left' on-click='previous'></photo-gallery-icon>
+      <photo-gallery-icon class='chevron' icon='chevron-right' on-click='next'></photo-gallery-icon>
+    </div>
+
+    <div class='toolbar' visible$='[[isFullScreen]]'>
+      <slot name='toolbar'>
+        <photo-gallery-icon class='back' icon='arrow-back' on-click='close'></photo-gallery-icon>
+      </slot>
+    </div>
+</template>
+
+<script>
+   class CustomGallery extends PhotoGallery {
+      
+      static get is(){
+         return 'custom-gallery'
+      }
+
+      ready() {
+         super.ready();
+      }
+   }
+   window.customElements.define(CustomGallery.is, CustomGallery);  
+</script>
+</dom-module>

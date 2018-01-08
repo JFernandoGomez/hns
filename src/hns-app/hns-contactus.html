@@ -1,0 +1,91 @@
+<link rel="import" href="../../bower_components/polymer/polymer-element.html">
+<link rel="import" href="hns-contact.html">
+<dom-module id="hns-contactus">
+   <template>
+      <style>
+         :host {
+            --app-primary-color: #204968;
+            --app-secondary-color: #ef6942;
+            font-family: 'Roboto', 'Noto', sans-serif;
+         }
+    
+         .container {
+            @apply --layout-horizontal;
+            margin: 0 auto;
+            padding: 20px 25px;
+         }
+
+         .container > * { 
+            @apply --layout-flex;
+         }
+
+         .container h1 {
+            font-size: 53px;
+            font-weight: bold;
+            text-align: center;
+            margin: 0 auto;
+         }
+
+         .container h2 {
+            font-size: 40px;
+            font-weight: 300;
+         }
+
+         .container p { 
+            max-width: 1200px;
+            font-size: 28px;
+            text-align: center;
+            margin: 0 auto;
+         }
+
+         .container hns-contact {
+            max-width: 800px;
+            margin: 0 auto;
+            color: var(--app-secondary-color);
+         }
+
+         .bold {
+            font-weight: bold;
+         }
+
+         .bg-grey {
+            background-color: #ccc; /*var(--google-grey-300);*/
+         }
+         
+         .bg-blue {
+            background-color: var(--app-primary-color);
+         }
+         
+         .primary-color {
+            color: var(--app-primary-color);
+         }
+      </style>
+
+      <div class="container">
+         <h1 class="primary-color"> CONTACT US </h1>
+      </div>
+      <div class="container">
+         <p>
+            Thank you for your interest in Howard &amp; Sons, Inc.,<br />
+            we look forward to working with you on your next project! <br />
+            Ask our team about financing options to make your next renovation even more affordable!
+         </p>
+      </div>
+      <div class="container bg-blue">
+         <hns-contact></hns-contact>
+      </div>
+   </template>
+   <script>
+      class HnsContactUs extends Polymer.Element {
+         static get is() {
+            return 'hns-contactus';
+         }
+
+         static get properties() {
+            return {};
+         }
+      }
+
+      window.customElements.define(HnsContactUs.is, HnsContactUs);
+   </script>
+</dom-module>
