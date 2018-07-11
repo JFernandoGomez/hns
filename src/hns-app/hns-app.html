@@ -2,9 +2,10 @@
 <link rel="import" href="../../bower_components/app-layout/app-header/app-header.html">
 <link rel="import" href="../../bower_components/app-layout/app-header-layout/app-header-layout.html">
 <link rel="import" href="../../bower_components/app-layout/app-toolbar/app-toolbar.html">
-<link rel="import" href="../../bower_components/app-layout/app-scroll-effects/effects/waterfall.html">
+<link rel="import" href="../../bower_components/app-layout/app-scroll-effects/app-scroll-effects.html">
 <link rel="import" href="../../bower_components/app-route/app-location.html">
 <link rel="import" href="../../bower_components/app-route/app-route.html">
+<link rel="import" href="../../bower_components/app-layout/app-grid/app-grid-style.html">
 <link rel="import" href="../../bower_components/iron-pages/iron-pages.html">
 <link rel="import" href="../../bower_components/iron-flex-layout/iron-flex-layout.html">
 <link rel="import" href="../../bower_components/iron-selector/iron-selector.html">
@@ -13,14 +14,18 @@
 <link rel="import" href="../../bower_components/paper-menu-button/paper-menu-button.html">
 <link rel="import" href="../../bower_components/social-media-icons/social-media-icons.html">
 
+<link rel="import" href="hns-footer.html">
+
 <link rel="lazy-import" href="hns-home.html">
 <link rel="lazy-import" href="hns-about.html">
 <link rel="lazy-import" href="hns-gallery.html">
 <link rel="lazy-import" href="hns-contactus.html">
 <dom-module id="hns-app">
    <template>
-      <style>
+      <style include="app-grid-style">
          :host {
+            --app-grid-columns:6;
+            --app-grid-expandible-item-columns:2;
             --app-primary-color: #204968;
             --app-secondary-color: #ef6942;
             --paper-menu-button-dropdown-background: #204968;
@@ -28,27 +33,38 @@
          }
 
          app-header {
-            color: #fff;
+            --app-header-background-front-layer: {
+              background-repeat: no-repeat;
+              background-size:  cover;
+              background-image: url(../../images/header-img.png) ;
+            };
+
+
+         /* --app-header-background-rear-layer: {
+              background-color: var(--app-primary-color);
+              color: white;
+            };*/
+            color: var(--app-primary-color);
             background-color: var(--app-primary-color);
+            height: 330px;
          }
+
+        .fixmenu {
+          margin: 0 auto;
+          height: 320px;
+        }
 
          app-header app-paper-icon {
             --app-icon-button-ink-color: #fff;
          }
-        
-         app-toolbar a {
-            width: -webkit-fill-available;
-            text-decoration: none;
-            color: #fff;
-         }
 
-         app-toolbar span {
-            text-align: right;
-            position:float;
-            width: 100px;
-            float: right;
+         app-toolbar {
+          background-color: var(--app-primary-color); 
+          margin-left: 0;
+          margin-right: 0;
          }
-          
+        
+
          .bg-blue {
             background-color: var(--app-primary-color);
          }
@@ -69,12 +85,16 @@
             @apply --layout-flex;
          }
 
-         .max-w300 {
-            max-width: 300px;
-            min-width: 200px;
+         .sides {
+            @apply --app-grid-expandible-item;
             margin: 0 auto;
             padding: 5px 35px;
-            font-size: 18px;
+            font-size: 15px;
+         }
+
+         .centre {
+           margin: 0 auto;
+           padding: 5px 35px;
          }
 
          .text {
@@ -91,15 +111,17 @@
 
          }
 
-         .menu-right {
-             display: block;
-             width: -webkit-fill-available;  
-             text-align: right; 
+         .menu {
+          margin: 0 auto;
+
          }
         
-         .menu-right a {
-            padding-right: 10px;
-            margin-right: 20px;
+         app-toolbar a {
+            padding: 15px;
+            font-family: roboto;
+            font-size: 25px;
+            color: white;
+            text-decoration:none; 
          }
 
          paper-menu-button {
@@ -109,16 +131,39 @@
          google-map {
             height: 300px;
          }
+
          
          @media (max-width: 800px) {
-            .container {
-               @apply --layout-vertical;
-            }
             
-            .menu-right {
-               display: none;
+            app-header {
+              height: 220px;
+              --app-header-background-front-layer: {
+                background-image: url(../../images/header-img-small.png);
+                background-repeat: no-repeat;
+                background-size: cover;
+              };    
+            };
+
+
+             app-toolbar a {
+                @apply --horizontal-layout;
+                padding: 10px;
+                font-family: roboto;
+                font-size: 15px;
+                color: white;
+                text-decoration:none; 
+             }
+
+            .fixmenu {
+              margin: 0 auto;
+              height: 220px;
             }
 
+
+            /*.container {
+               @apply --layout-vertical;
+            }*/
+            
             paper-menu-button {
                display: block;
             }
@@ -133,6 +178,23 @@
                width: 200px;
             }
          }
+
+         @media(max-width: 1999px) {
+           
+            app-header {
+              height: 280px;
+              --app-header-background-front-layer: {
+                background-repeat: no-repeat;
+                background-size: cover;
+                background-image: url(../../images/header-img-medium.png) ;
+              };    
+            };
+
+            .fixmenu {
+              margin: 0 auto;
+              height: 280px;
+            }
+         }
       </style> 
       <app-location route="{{route}}"
                url-space-regex="^[[rootPath]]"></app-location>
@@ -144,25 +206,14 @@
 
 
       <app-header-layout>
-         <app-header slot="header" reveals condenses effects="waterfall">
-            
-            <app-toolbar>
-            <paper-menu-button>
-              <paper-icon-button icon="menu" slot="dropdown-trigger" alt="menu"></paper-icon-button>
-              <paper-listbox slot="dropdown-content">
-                <paper-item><a href="[[rootPath]]home">Home</a></paper-item>
-                <paper-item><a href="[[rootPath]]gallery">Gallery</a></paper-item>
-                <paper-item><a href="[[rootPath]]about">About Us</a></paper-item>
-                <paper-item><a href="[[rootPath]]contactus">Contact Us</a></paper-item>
-              </paper-listbox>
-            </paper-menu-button>
-               <a href="[[rootPath]]home"><div main-title> Howard &amp; Sons Inc.</div></a>
-               <div class="menu-right">
+         <app-header  slot="header" condenses reveals effects="parallax-background">
+            <div class="fixmenu"> </div>
+            <app-toolbar class="app-grid"> 
                   <a href="[[rootPath]]home">Home</a>
                   <a href="[[rootPath]]gallery">Gallery</a>
                   <a href="[[rootPath]]about">About Us</a>
                   <a href="[[rootPath]]contactus">Contact Us</a>
-               </div>
+                  <a href="https://howardsonsinc.tumblr.com/" target="_blank">Blog</a>
             </app-toolbar>
          </app-header>
 
@@ -177,47 +228,7 @@
             <hns-contactus name="contactus"></hns-contactus>
          </iron-pages>
       
-         <div class="container bg-blue">
-            <div class="max-w300">
-               <p class="text">
-                  Corona Office: <br />
-                  357 N Sheridan St., #104 <br />
-                  Corona, CA 92880 <br />
-                  Phone: <a href="tel:9514027663" class="orange">951-402-ROOF</a> <br />
-                  Fax: 1-208-694-9322 <br />
-               <br />
-                  San Diego Office:  <br />
-                  Phone:<a href="tel:6193635447" class="orange"> (619)363-5447</a> <br />
-                <br />
-
-                  Hours: By appointment only <br />
-                  Email:<a href="mailto:info@hnsca.com" class="orange"> info@hnsca.com</a> <br />
-               </p>
-            </div>
-            <div class="max-w300">
-               <p class="text">
-                  <a href="[[rootPath]]about" class="orange"> About Us</a> <br />
-                  <a href="https://howardsonsinc.tumblr.com/" target="_blank" class="orange"> Blog</a> <br />
-                  <a href="[[rootPath]]gallery" class="orange"> Gallery</a> <br />
-                  <a href="[[rootPath]]contactus" class="orange"> Contact Us</a> <br />
-                  <!--a href="[[rootPath]]services" class="orange"> Construction Services</a -->
-               </p>   
-            </div>
-            <div class="max-w300">
-               <social-media-icons icon="facebook" color="#ef6942" size="48"></social-media-icons>
-               <a href="https://www.facebook.com/Howard-Sons-Inc-1703996666539489/" class="orange" target="_blank">Howard & Sons</a> <br />
-               <social-media-icons icon="twitter" color="#ef6942" size="48"></social-media-icons>
-               <a href="https://twitter.com/hns_ca" class="orange" target="_blank">@hns_ca</a> <br />
-               <social-media-icons icon="youtube" color="#ef6942" size="48"></social-media-icons>
-               <a href="https://www.youtube.com/channel/UCMM7pYZBV3jIiTpcStROO3A" class="orange" target="_blank">Howard & Sons, Inc. </a> <br />
-            </div>
-            <div class="max-w600">
-               <google-map fit-to-marker  latitude="33.884" longitude="-117.569" zoom="14"  api-key="AIzaSyAp_dbp4u4cNv_oCV1HXriLuFIx7KHdhWY" ><!--api-key="AIzaSyAp_dbp4u4cNv_oCV1HXriLuFIx7KHdhWY"-->
-                  <google-map-marker latitude="33.8847312" longitude="-117.5699203" label="Howard & Sons Inc." draggable="false"></google-map-marker>
-               </google-map>
-            </div>
-         </div>
- 
+        <hns-footer></hns-footer> 
       </app-header-layout>
    </template>
 

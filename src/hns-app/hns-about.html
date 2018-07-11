@@ -1,39 +1,43 @@
 <link rel="import" href="../../bower_components/polymer/polymer-element.html">
 <link rel="import" href="../../bower_components/iron-image/iron-image.html">
+<link rel="import" href="../../bower_components/app-layout/app-grid/app-grid-style.html">
 
 <dom-module id="hns-about">
    <template>
-      <style>
+      <style include="app-grid-style">
          :host {
+            --app-grid-columns: 3;
+            --app-grid-expandible-item-columns: 2;   
             --app-primary-color: #204968;
             --app-secondary-color: #ef6942;
+            --iron-image-width: 520px;
+            --iron-image-height: 350px;
             font-family: 'Roboto', 'Noto', sans-serif;
          }
          
-         .container {
-            @apply --layout-horizontal;
-            margin: 0 auto;
-            padding: 20px 25px;
-         }
-
-         .container > * {
-            @apply --layout-flex;
-         }
-
-         .container h1 {
+         h1 {
             font-size: 53px;
             font-weight: bold;
          }
 
-         .container h2 {
+         h2 {
             font-size: 40px;
             font-weight: 300;
          }
 
-         .container p {
-            max-width: 1024px;
+         p {
             font-size: 28px;
             margin: 0 auto;
+         }
+
+         .content {
+            @apply --app-grid-expandible-item;
+            margin: 0 auto;
+         }
+
+         .quote {
+             float: right;
+             margin-top: 90px;  
          }
 
          .bold {
@@ -45,26 +49,25 @@
          }
 
          .sub-container {
-            max-width: 1024px;
             display: inline;
             margin: 0 auto;
          }
 
          .sub-container p {
             padding: 25px;
-            width: 550px;
             font-size: 20px;
          }
 
          .company-photo {
-            width: 420px;
-            height: 250px;
+            padding: 10px;
+            margin: 0 auto;
+            width: 520px;
+            height: 350px;
          } 
       
          .circle {
-            display: inline-block;
-            max-width: 600px;
-            height: 110px;
+            width:600px;
+            height: 150px;
             padding: 25px 10px;
             font-size: 60px;
             font-weight: bold;
@@ -74,12 +77,31 @@
             border-radius: 50%;
             text-align: center;
             margin-bottom: 25px;
+            margin-top:25px;
             vertical-align: middle;
-         }   
+         }  
+
+         @media (max-width: 800px){
+           :host {
+            --app-grid-columns: 1;
+           }
+
+           .quote {
+             display: block;
+             float: none;
+             margin: 0 auto;
+           }
+
+           .circle {
+            font-weight: 35px;
+           }
+         }
       </style>
-      
-      <div class="container">
-         <p>
+      <br /> 
+      <br /> 
+      <br />
+      <div class="app-grid">
+         <p class="content">
             <strong>Howard &amp; Sons, Inc.</strong> is a family owned construction company which has been operating
             since 2016 with experience since 1995.  The owner, Dustyn Howard has over 25 years of
             experience in the construction and roofing. <strong>Howard &amp; Sons, Inc.</strong> is licensed under the
@@ -87,41 +109,42 @@
          </p>
       </div>
 
-      <div class="container">
-         <div class="sub-container">
-            <iron-image src="../../images/about-us/company-photo.jpeg" sizing="contain" class="company-photo" ></iron-image>
-            <p style="float: right;">
+      <div class="app-grid">
+        <iron-image src="../../images/about-us/company-photo.jpeg" 
+              sizing="contain"
+              class="company-photo"></iron-image>
+            <p class="content quote">
                <strong> 
                   &quot;Our utmost concern in this company is to provide great value at an affordable cost&quot;
                </strong> <br />
                <i>- Dustyn Howard</i>
             </p>
-         </div> 
       </div>
 
-      <div class="container">
-         <div class="circle"> Mission Statement </div>
+      <div class="app-grid">
+         <div class="circle content"> Mission Statement </div>
       </div>
-      <div class="container">
-         <p>
+      <br />
+      <div class="app-grid">
+         <p class="content">
             Howard &amp; Sons mission is to provide the highest degree of services with the best system warranties
              available in the industry. 
          </p>
       </div>
-      <div class="container">
-         <div class="circle"> Company Vision </div>
+      <div class="app-grid">
+         <div class="circle content"> Company Vision </div>
       </div>
-      <div class="container">
-         <p>
+      <div class="app-grid">
+         <p class="content">
             Provide the best quality installation in the most professional manner. And by doing this providing
              our employees a great life where they are proud of their work. 
          </p>
       </div>
-      <div class="container">
-         <div class="circle"> Service Area </div>
+      <div class="app-grid">
+         <div class="circle content"> Service Area </div>
       </div>
-      <div class="container">
-         <p style="font-size:22px">
+      <div class="app-grid">
+         <p class="content" style="font-size:22px">
             <strong>Howard &amp; Sons Service Area Includes</strong>: <br />
             <strong>Riverside County </strong>, Banning, Beaumont, Corona, Homeland, Lake Elsinore, Mira Loma, Moreno Valley,
                 Mountain Center, Norco, Perris, Riverside.<br />

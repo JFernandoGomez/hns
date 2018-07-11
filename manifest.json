@@ -1,7 +1,7 @@
 {
-  "name": "hns",
-  "short_name": "hns",
-  "description": "temporal site for hns.com",
+  "name": "Howard & Sons. Inc.",
+  "short_name": "HNS Inc.",
+  "description": "GET A FREE QUOTE!",
   "start_url": "/",
   "display": "standalone"
 }

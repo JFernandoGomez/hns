@@ -3,16 +3,16 @@
 <link rel="import" href="../../bower_components/iron-form/iron-form.html">
 <link rel="import" href="../../bower_components/paper-input/paper-input.html">
 <link rel="import" href="../../bower_components/paper-toast/paper-toast.html">
+<link rel="import" href="../../bower_components/app-layout/app-grid/app-grid-style.html">
 <dom-module id="hns-contact">
    <template>
-      <style>
+      <style include="app-grid-style">
          :host {
-            display: block;
-            width: 100%;
+           --app-grid-columns: 1;
+           margin: 0 auto;
          }
 
          .size {
-            width: 100%;
             line-height: 2;
             --paper-input-container-color: white;
             --paper-input-container-focus-color: #c5cae9;
@@ -23,15 +23,13 @@
             background-color: #ef6942;
             font-size: 20px;
             font-weight: 500;
-            max-width: 700px;
             color: #204968;
             padding: 5px 30px;
+            margin: 0 auto;
             margin-top: 30px;
-            margin-right: 45px;
          }
 
          iron-form {
-            width: 100%;
             padding: 5px 15px;
             transform: translateZ(0);
          }
@@ -47,7 +45,7 @@
          }
       </style>
       <!--Shadow elements place here-->
-      <div self-center id="contactContainer"> 
+      <div class="app-grid" id="contactContainer"> 
     	 <iron-form id="contactInfo" encoding="UTF-8" content-type="application/json">
     	 <form method="POST" action="https://hnsca.com/easyBuilder/public/inst/contact">
     	    <paper-input class="size" 

@@ -1,44 +1,52 @@
 <link rel="import" href="../../bower_components/photo-gallery/photo-gallery.html">
+<link rel="import" href="../../bower_components/app-layout/app-grid/app-grid-style.html">
 <dom-module id="custom-gallery">
 <template>
-   <style>
+   <style include="app-grid-style">
       :host {
+        --app-grid-columns: 4;
+        --app-grid-expandable-item-columns: 2;
         display: block;
       }
+
       .grid {
         display: flex;
         flex-wrap: wrap;
         margin: -4px;
       }
+
       .grid ::slotted(.item) {
-        flex-grow: 1;
+        /*flex-grow: 1;*/
         margin: 4px;
         background-position: center;
         background-repeat: no-repeat;
         background-size: cover;
         cursor: pointer;
       }
+
       .slideshow {
         position: fixed;
-        top: 0;
+        top: 0px;
         right: 0;
         bottom: 0;
         left: 0;
-        z-index: 2400;
+        z-index: 99999;
         display: none;
         background-color: black;
         user-select: none;
       }
+
       .slide {
         position: absolute;
-        top: 0;
+        top: 280px;
         right: 0;
         bottom: 0;
         left: 0;
-        max-width: 100%;
-        max-height: 100%;
+        max-width: 50%;
+        max-height: 50%;
         margin: auto;
       }
+
       .chevron {
         position: absolute;
         top: 50%;
@@ -50,15 +58,18 @@
           height: 36px;
         };
       }
+
       .chevron:hover {
         opacity: 1;
       }
+
       .chevron:first-of-type {
         left: 24px;
       }
       .chevron:last-of-type {
         right: 24px;
       }
+
       .toolbar {
         position: fixed;
         top: 50px;
@@ -72,22 +83,25 @@
         visibility: hidden;
         will-change: transform;
       }
+
       .toolbar[visible] {
-        transform: translateY(0);
+        transform: translateY(280px);
         visibility: visible;
       }
+
       .back {
         padding: 20px 24px;
       }
+
     </style>
 
-    <div class='grid' on-click='open'>
+    <div class='app-grid grid' on-click='open'>
       <slot id='grid'></slot>
     </div>
 
     <div class='slideshow' id='slideshow'>
-      <img class='slide' id='slide'>
-      <img class='slide' style='display: none' id='exitSlide'>
+      <img class='slide' id='slide' on-click='close' />
+      <img class='slide' style='display: none' id='exitSlide' />
       <photo-gallery-icon class='chevron' icon='chevron-left' on-click='previous'></photo-gallery-icon>
       <photo-gallery-icon class='chevron' icon='chevron-right' on-click='next'></photo-gallery-icon>
     </div>
