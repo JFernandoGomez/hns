@@ -1,10 +1,8 @@
 <link rel="import" href="../../bower_components/app-route/app-location.html">
 <link rel="import" href="../../bower_components/app-route/app-route.html">
+<link rel="import" href="../../bower_components/app-layout/app-grid/app-grid-style.html">
 <link rel="import" href="../../bower_components/polymer/polymer-element.html">
 <link rel="import" href="../../bower_components/app-layout/app-header-layout/app-header-layout.html">
-<link rel="import" href="../../bower_components/app-layout/app-scroll-effects/effects/waterfall.html">
-<link rel="import" href="../../bower_components/app-layout/app-header/app-header.html">
-<link rel="import" href="../../bower_components/app-layout/app-toolbar/app-toolbar.html">
 <link rel="import" href="../../bower_components/iron-flex-layout/iron-flex-layout.html">
 <link rel="import" href="../../bower_components/paper-card/paper-card.html">
 <link rel="import" href="../../bower_components/paper-button/paper-button.html">
@@ -13,9 +11,11 @@
 <link rel="import" href="hns-contact.html">
 <link rel="import" href="../../bower_components/skeleton-carousel/skeleton-carousel.html">
 <dom-module id="hns-home">
-  <template>
-    <style>
+ <template>
+    <style include="app-grid-style">
       :host {
+        --app-grid-columns:3;
+        --app-grid-expandible-item-columns:2;
         --app-primary-color: #204968;
         --app-secondary-color: #ef6942; 
         --paper-card-header-text: {
@@ -32,21 +32,12 @@
        display: block;
       }
 
-/*      app-header {
-         color: #fff;
-         background-color: var(--app-primary-color);
-      }
-
-      app-header app-paper-icon {
-         --paper-icon-button-ink-color: #fff;
-      }
-*/
       header {
          @apply --layout-vertical;
          @apply --layout-center-center;
-         height: calc(100vh - 64px);
+         height: calc(80vh - 64px);
          padding: 0 16px;
-         background-image: url('../../images/website-main-image.png');
+         background-image: url('../../images/website-main-image.jpg');
          background-repeat: no-repeat;
          background-size: cover;
          color: var(--app-primary-color);
@@ -72,7 +63,7 @@
       .container {
          @apply --layout-horizontal;
          margin: 0 auto;
-         padding: 10px 25px;
+         padding: 5px;
       }
 
       .container > * {
@@ -80,14 +71,34 @@
       }
       
       .bg-white-center {
-         @apply --layout-vertical;
          background-color: white;
-         text-align: center;
+      }
+
+      .bg-secondary {
+        background-color: var(--app-secondary-color);
+        text-align: center;
+        padding: 15px;
+      }
+
+      .bg-secondary h2 {
+        color: var(--app-primary-color);
+        margin: 0 auto;
+        font-family: "Times New Roman", Times, serif;
+        font-size: 45px;
+        font-weight: bold 800;
+        @apply --app-grid-expandible-item;
+      }
+
+      .bg-secondary a {
+        @apply --app-grid-expandible-item;
+        margin: 0 auto;
+        font-size: 30px;
+        font-family: "Times New Roman", Times, serif;
+        text-decoration: none;
       }
 
       .bg-light-gray {
          background-color: #ccc;
-         padding: 15px 50px;
       }
 
       .bg-green{
@@ -114,13 +125,12 @@
       }
 
       .max-w1000 {
-         max-width: 1000px;
+         @apply --app-grid-expandible-item;
          padding: 5px 15px;
          margin: 0 auto;
       }
 
       .max-w300 {
-         max-width: 300px;
          padding: 5px 15px;
          margin: 0 auto;
          padding: 0 45px;
@@ -128,25 +138,10 @@
       }
 
       .max-w600 {
-         max-width: 600px;
          padding: 5px 15px;
          margin: 0 auto;
       }
 
-      .content-as-table{
-         @apply --layout-horizontal;
-         max-width: 998px;
-         display: inline-block;
-         margin: 0 auto;
-      }
-
-      .content-as-col{
-         max-width: 250px;
-         min-width: 250px;
-         font-size: 18px;
-         float: left;
-      }
-      
       .text {
          font-family: 'Roboto', 'Noto', sans-serif; 
          font-size: 18px;
@@ -165,11 +160,16 @@
          text-decoration: none;
       }
 
-      .middle-mx-w1700 {
-         max-width: 1700px;
+      .learn-more-curvy {
+        background: linear-gradient(to bottom, #204968, gray);
+        color: white;
+        margin: 0 auto;
+        border-radius: 25px;
+      }
+
+      .financing-line-images { 
          margin: 0 auto;
-         padding: 0 45px;
-         font-size: 25px;
+         padding: 15px 10px;
       }
 
       .w1800 {
@@ -196,7 +196,7 @@
       .container h2 {
          font-size: 45px;
          font-weight: bold 500;
-         margin: 15px 0;
+         margin: 0 auto;
       }      
 
       .container h3 {
@@ -221,8 +221,8 @@
          color: inherit;
       }
       .video {
-         padding: 10px 15px;
-         margin-right: 20px; 
+        padding: 10px 15px;
+        margin: 0 auto; 
       }
 
       .contact {
@@ -284,8 +284,7 @@
       }
 
       paper-card {
-         max-width: 500px;
-         margin: 0 auto;
+         margin: 15px 15px;
       }
 
       .card-actions {
@@ -357,10 +356,6 @@
       
       @media(max-width: 1400px){
          
-         .container {
-            @apply --layout-vertical;
-         }
-
          .content-as-col {
             max-width: 220px;
             min-width: 220px;
@@ -387,12 +382,21 @@
             margin-top: 20px; 
          }
       }
+
+      @media(max-width: 1024px) {
+        :host{
+          --app-grid-columns:1;
+        }
+      }
       
       @media (max-width: 600px) {
-         .container {
-            @apply --layout-vertical;
+         :host{
+           --app-grid-columns:1;
          }
-
+         
+        .container {
+          @apply --layout-vertical;
+        }
          .contact {
             max-width: calc(100vw - 30px);
          }
@@ -407,7 +411,6 @@
          }
 
          .max-w1000 {
-            width: 550px;
             margin: 0 auto;
          }
 
@@ -449,34 +452,35 @@
       }
 
       @media (max-width: 410px) {
+        :host {
+          --app-grid-columns:1;
+        }
+        .container {
+          @apply --layout-vertical;
+        }
          header {
-           background-image: url('../../images/header-cel.jpg');
+           background-image: url('../../images/website-main-image-sm.jpg');
            padding: 0; 
          } 
          
          .max-w600 {
-            width: 400px;
             margin: 0 auto;
          }
 
          .max-w1000 {
-            width:  380px;
             margin: 0 auto;
          }
 
          .content-as-table {
-            width: 380px;
             display: block;
             padding: 5px 15px;   
          }
 
          .content-as-col {
-            width: 200px;
             display: block;
          }
 
          .company-style {
-            width: 380px;
             font-size: 25px;
             font-weight: bold;
             color: var(--app-secondary-color);
@@ -494,37 +498,20 @@
 
       @media (max-width: 360px) {
          
-         header {
-           background-image: url('../../images/header-cel.jpg');
-         } 
-         
          .container {
             padding: 5px 3px;
          }
          
          .max-w600 {
-            width: 300px;
             margin: 0 auto;
          }
 
          .max-w1000 {
-            width:  300px;
             margin: 0 auto;
          }
 
-         .content-as-table {
-            width: 300px;
-            display: block;
-            padding: 3px 7px;   
-         }
-
-         .content-as-col {
-            width: 300px;
-            display: block;
-         }
 
          .company-style {
-            width: 300px;
             font-size: 22px;
             font-weight: bold;
             color: var(--app-secondary-color);
@@ -537,10 +524,6 @@
             margin-top: 15px; 
          }
          
-         iron-form {
-             width: 80%;
-         }
-
          skeleton-carousel iron-image {
             text-align: center;
             min-height: 150px;
@@ -552,14 +535,26 @@
    <app-route route="{{route}}" pattern="[[rootPath]]:section" data="{{data}}" ></app-route>
     
    <header></header>
-   <section-info>
-      <div class="container bg-white-center">
-         <h2 class="text-bold">0% DOWN 0% INTEREST</h2>
-         <p><a href="home#financing">Learn more about our financing options</a></p>
-      </div>
-   </section-info>
+ 
+  <div class="container app-grid">
+    <iron-image class="financial-company-logos img150x300" sizing="contain" src="../../images/logos/Owens-Corning-FB.jpg"></iron-image>
+    <iron-image class="financial-company-logos img150x300" sizing="contain" src="../../images/logos/master-shingle.png"></iron-image>
+    <iron-image class="financial-company-logos img150x300" sizing="contain" src="../../images/logos/IKOLogo.jpg"></iron-image>
+    <iron-image class="financial-company-logos img150x300" sizing="contain" src="../../images/logos/CERTIFIED.jpg"></iron-image>
+  </div>
 
-   <div class="container bg-light-gray">
+  <div class="app-grid bg-secondary">
+     <h2 class="text-bold">0% DOWN 0% INTEREST FINANCING OPTIONS</h2>   
+  </div>
+  <div class="app-grid bg-secondary">
+     <a href="home#financing">
+       <paper-button class="learn-more-curvy">
+         Learn more...
+       </paper-button>
+     </a>
+  </div>
+
+   <div class="container app-grid bg-light-gray">
       <paper-card heading="Residential" image="../../images/residential-small.png">
          <div class="card-content">
             <ul>
@@ -582,7 +577,7 @@
          </div>
       </paper-card>
 
-      <paper-card heading="Comercial" image="../../images/commercial-small.png">
+      <paper-card heading="Commercial" image="../../images/commercial-small.png">
          <div class="card-content">
             <ul>
                <li>Hotels.</li>
@@ -639,8 +634,27 @@
         <a href="http://www.benjifinancing.com/" target="_blank">Benji</a>
       </p>
    </div>
-   <div class="contaner bg-white-center">
-      <div class="middle-mx-w1700">
+
+   <div class="container app-grid">
+     <iron-image class="financial-company-logos img150x300" 
+                 src="../../images/hero-logo-350px.jpg"
+                 sizing="contain"
+                 preload ></iron-image>
+     <iron-image class="financial-company-logos img150x300" 
+                 src="../../images/ygrene-logo-350px.png"
+                 sizing="contain"
+                 preload ></iron-image>
+     <iron-image class="financial-company-logos img150x300" 
+                 src="../../images/california-first-350px.png"
+                 sizing="contain"
+                 preload ></iron-image>
+     <iron-image class="financial-company-logos img150x300" 
+                 src="../../images/benji-alt-logo.png"
+                 sizing="contain"
+                 preload ></iron-image>
+   </div>    
+   <!--div class="contaner bg-white-center">
+      <div class="app-grid financing-line-images">
         <a href="https://www.renovateamerica.com/financing/hero" target="_blank">
             <iron-image class="financial-company-logos img150x300" sizing="contain" src="../../images/hero-logo-350px.jpg"><iron-image>
         </a>
@@ -650,22 +664,24 @@
         <a href="https://renewfinancial.com/product/californiafirst" target="_blank">
             <iron-image class="financial-company-logos img150x300" sizing="contain" src="../../images/california-first-350px.png"><iron-image>
         </a>
+        <span>&nbsp;</span>
         <a href="http://www.benjifinancing.com/" target="_blank">
             <iron-image class="financial-company-logos img150x300" sizing="contain" src="../../images/benji-alt-logo.png"><iron-image>
         </a> 
+        <span>&nbsp;</span>
       </div>
-   </div>
+   </div-->
 
-   <div class="container bg-blue">
-      <div class="max-w1000 video bg-blue">
+   <div class="app-grid  bg-blue">
+      <div class="max-w1000 bg-blue">
          <google-youtube
                      video-id="OmvCojQX3EI" 
-                     rel="0" 
-                     height="500px"
-                     width="1000px"
-                     autoplay="0"></google-youtube>
+                     rel="0"
+                     fluid="true"
+                     autoplay="0"
+                     style="padding-top: 10px;"></google-youtube>
       </div>
-      <div id="contact_1" class="max-w600 contact bg-blue">
+      <div id="contact_1" class="contact bg-blue">
          <h2> GET A FREE QUOTE </h2>
          <hns-contact></hns-contact>
       </div>
@@ -674,8 +690,8 @@
       <div class="company-style" > Residential </div>
    </div>
    <!--Residential Shingles -->
-   <div class="container">
-    <div class="max-w600 description">      
+   <div class="app-grid">
+    <div class="max-w600">      
       <skeleton-carousel dots nav loop id="resiShingles">
          <div>
             <iron-image placeholder="../../images/shingles/shingle-1-updated.jpg"
@@ -726,7 +742,7 @@
         </div>
       </skeleton-carousel>
     </div> 
-    <div class="max-w1000 description">
+    <div class="max-w1000">
       <h3 class="text-bold">Shingles</h3>
       <p class="text">
             Shingles are one of the most widely used roofing covers in North America because
@@ -737,35 +753,36 @@
             compliance as well as HOA regulations.  We can provide you a quote for any of the
             following types of shingles:
       </p>
-      <div class="content-as-table">
-         <div class="content-as-col">
+      <table>
+         <tr>
+           <td>
             <ul>
                <li> Asphalt shingles </li>
-               <li> Concrete shingles </li>
+               <li> Metal shingles </li>
                <li> Wood/Shake shingles </li>
             </ul>
-         </div>
-         <div class="content-as-col">
+           </td>  
+           <td>
             <ul>
                <li> Fiberglass shingles</li>
                <li> Composite shingles </li>
                <li> Organic shingles</li>
             </ul>
-         </div>
-         <div class="content-as-col">
+           </td>
+           <td style="vertical-align:text-top;">
             <ul>
-               <li> Slate shignles</li>
                <li> Three-tab shingles</li>
                <li> Architectural shingles</li>
             </ul>
-         </div>
-      </div>
+           </td>
+         </tr>
+      </table>
       <p class="text"><a href="home#contact_1"> Contact us</a> for more options (951-402-ROOF) </p>
     </div> 
    </div>
    <!-- Residential Tiles-->
-   <div class="container">
-    <div class="max-w600 description">
+   <div class="app-grid">
+    <div class="max-w600">
       
       <skeleton-carousel dots nav loop id="resiTiles">
         <div>
@@ -778,7 +795,7 @@
                         sizing="contain" 
                         preload ></iron-image>
         </div>
-        <div>
+        <div>1
             <iron-image data-src="../../images/tiles/tiles-3.jpg"
                         sizing="contain" 
                         preload></iron-image>
@@ -800,7 +817,7 @@
          </div>
       </skeleton-carousel>
     </div> 
-    <div class="max-w1000 description">
+    <div class="max-w1000">
       <h3>Tiles</h3>
       <p class="text">
          Roof tiles are traditionally made from locally available materials
@@ -813,31 +830,34 @@
          that is, whether it is two piece, one piece, interlocking or flat.
          We work with many different types of tile roofing materials including:
       </p>
-      <div class="content-as-table">
-         <div class="content-as-col">
+      <table>
+        <tr>
+          <td>
             <ul>
                <li> Clay Tile </li>
-               <li> Spanish Tile </li>
-            </ul>
-         </div>
-         <div class="content-as-col">
-            <ul>
-               <li> Slate Tile </li>
                <li> Synthetic Tile </li>
             </ul>
-         </div>
-         <div class="content-as-col">
+          </td>
+          <td>
+            <ul>
+               <li> Slate Tile </li>
+               <li> Ceramic Tile</li>
+            </ul>
+          </td>
+          <td>
             <ul>
                <li> Concrete Tiles (light &amp; standard weight)</li>
+               <li> Copper Tile </li>
             </ul>
-         </div>
-      </div>
+          </td>
+        </tr>
+      </table>
       <p class="text">If you have a specific style or color in mind <a href="home#contact_1"> contact us </a> now for a free quote. </p>
     </div> 
    </div>
    <!-- Residential Flat-->
-   <div class="container">
-    <div class="max-w600 description">
+   <div class="app-grid">
+    <div class="max-w600">
       
       <skeleton-carousel dots nav loop id="resiFlat">
         <div>
@@ -851,51 +871,50 @@
                         preload ></iron-image>
         </div>
         <div>
-            <iron-image data-src="../../images/flat/flat-3.jpg"
-                        sizing="contain" 
-                        preload></iron-image>
-       </div>
-        <div>
             <iron-image data-src="../../images/flat/flat-4.jpg" 
                         sizing="contain" 
                         preload ></iron-image>
         </div>
       </skeleton-carousel>
     </div> 
-    <div class="max-w1000 description">
+    <div class="max-w1000">
       <h3>Flat</h3>
       <p class=text>
          A flat roof is a roof which is almost level in contrast to the many types of sloped roofs.
          Flat roofs are mostly used in arid climates and allow the roof space to be used as a living space or a living roof.
          We have experience repairing or installing all of the following types of flat roofing systems:
       </p>
-      <div class="content-as-table">
-         <div class="content-as-col">
+      <table>
+        <tr>
+          <td>
             <ul>
                <li> Felt roof </li>
                <li> Torchdown </li>
                <li> Mastic asphalt </li>
             </ul>
-         </div>
-         <div class="content-as-col">
+          </td>
+          <td>
             <ul>
                <li> Fibreglass </li>
                <li> PVC single-ply membrane </li>
+               <li> Flat Roof Restoration </li>
             </ul>
-         </div>
-         <div class="content-as-col">
+          </td>
+          <td>
             <ul>
                <li> TPO Single-ply  membrane</li>
                <li> Foam </li>
+               <li> Flat Roof Repair </li>
             </ul>
-         </div>
-      </div>
+          </td>
+        </tr>
+      </table>
       <p class="text"><a href="home#contact_2">Contact us</a> or call to set up a time for your free quote </p>
     </div> 
    </div>
    <!-- Residential Metal-->
-   <div class="container">
-    <div class="max-w600 description">
+   <div class="app-grid">
+    <div class="max-w600">
       
       <skeleton-carousel dots nav loop id="resiMetal">
         <div>
@@ -940,7 +959,7 @@
         </div>
       </skeleton-carousel>
     </div> 
-    <div class="max-w1000 description">
+    <div class="max-w1000">
       <h3>Metal/Specialty Roofing</h3>
       <p class=text>
          Residential metal roofing is primarily made of steel or aluminum. Copper, zinc and titanium are also
@@ -954,36 +973,38 @@
       <p class="text"> 
           Our representatives can also answer all your questions about metal roofs as well as show you sample options and colors.
       </p>
-      <div class="content-as-table">
-         <div class="content-as-col">
+      <table>
+        <tr>
+          <td>
             <ul>
                <li> Cooper Metal Roofing </li>
                <li> Standing Seam Metal Roofing systems</li>
+               <li> Green, "Eco-Friendly" Roofing Systems </li>
             </ul>
-         </div>
-         <div class="content-as-col">
+          </td>
+          <td style="vertical-align:text-top;">
             <ul>
                <li> Metal Shingles Roofs </li>
                <li> Aluminium Shake Roofs </li>
             </ul>
-         </div>
-         <div class="content-as-col">
+          </td>
+          <td style="vertical-align:text-top;">
             <ul>
                <li> Metal Tile Roofs</li>
                <li> Metal Slate Roofs </li>
-               <li> Green, "Eco-Friendly" Roofing Systems </li>
             </ul>
-         </div>
-      </div>
+          </td>
+        </tr>
+      </table>
     </div> 
    </div>
 
    <!--div class="container bg-blue">
    </div-->
 
-   <div class="container bg-blue">
+   <div class="app-grid bg-blue">
       <div class="max-w600 bg-blue">
-        <h2 class="max-w1000 blue-bg orange text-bold"> GET A FREE QUOTE! </h2>
+        <h2 class="blue-bg orange text-bold"> GET A FREE QUOTE! </h2>
         <p class="text orange font-35 text-centered"> 
             Call 951-402-ROOF (7663) to set up your FREE quote appointment,
             or fill out this form and a representative will be in touch with you soon! 
@@ -999,8 +1020,8 @@
       <div class="company-style" > Commercial &amp; <br/> Industrial </div>
    </div>
    <!-- -->
-   <div class="container">
-    <div class="max-w1000 description">
+   <div class="app-grid">
+    <div class="max-w1000">
       
       <p class=text>
          <strong>Howard &amp; Sons, Inc </strong>. has a lot of experience working on commercial projects both large and small.
@@ -1010,32 +1031,34 @@
       <p class="text"> 
           Contact us today for a quote on your project.  We can install or repair any of the following:
       </p>
-      <div class="content-as-table">
-         <div class="content-as-col">
+      <table>
+        <tr>
+          <td>
             <ul>
                <li> Single Ply Roofing</li>
                <li> PVC Roofing (Duro-Last)</li>
                <li> TPO Roofing (Firestone)</li>
             </ul>
-         </div>
-         <div class="content-as-col">
+          </td>
+          <td>
             <ul>
                <li> Roof Coatings (Silicon or Hybrid Acrylic)</li>
                <li> Waterproofing </li>
                <li> Metal Roofing </li>
             </ul>
-         </div>
-         <div class="content-as-col">
+          </td>
+          <td>
             <ul>
                <li> Curved Metal Roofing </li>
                <li> Sheet Metal Work </li>
                <li> Roofing Sealing </li>
                <li> And more...</li>
             </ul>
-         </div>
-      </div>
+          </td>
+        </tr>
+      </table>
     </div> 
-    <div class="max-w600 description">
+    <div class="max-w600">
       
       <skeleton-carousel dots nav loop id="comme">
         <div>
@@ -1091,65 +1114,59 @@
       </skeleton-carousel>
     </div> 
    </div>
-   <div class="container bg-gray">
+   <div class="app-grid bg-gray">
      <div class="max-w1000 text-center"> <h2 class="text-bold">Using only the highest quality products!</h2> </div>
    </div>
-   <div class="container">
-      <div class="w1800 text-center">
-         <iron-image class="financial-company-logos img150x300" 
-                     src="../../images/logos/certainteed-logo.jpg"
-                     sizing="contain"
-                     preload ></iron-image>
-         <iron-image class="financial-company-logos img150x300" 
-                     src="../../images/logos/Durolast-logo.jpg"
-                     sizing="contain"
-                     preload ></iron-image>
-         <iron-image class="financial-company-logos img150x300" 
-                     src="../../images/logos/firestoneroofinglogo.jpg"
-                     sizing="contain"
-                     preload ></iron-image>
-         <iron-image class="financial-company-logos img150x300" 
-                     src="../../images/logos/metal-sales.jpg"
-                     sizing="contain"
-                     preload ></iron-image>
-      </div>
+   <div class="container app-grid">
+     <iron-image class="financial-company-logos" 
+                 src="../../images/logos/CERTIFIED.jpg"
+                 sizing="contain"
+                 preload ></iron-image>
+     <iron-image class="financial-company-logos" 
+                 src="../../images/logos/Durolast-logo.jpg"
+                 sizing="contain"
+                 preload ></iron-image>
+     <iron-image class="financial-company-logos" 
+                 src="../../images/logos/firestoneroofinglogo.jpg"
+                 sizing="contain"
+                 preload ></iron-image>
+     <iron-image class="financial-company-logos img150x300" 
+                 src="../../images/logos/metal-sales.jpg"
+                 sizing="contain"
+                 preload ></iron-image>
    </div>
-   <div class="container">    
-      <div class="w1800 text-center">
-         <iron-image class="financial-company-logos img150x300" 
-                     src="../../images/logos/NuRay-Metals.gif"
-                     sizing="contain"
-                     preload ></iron-image>
-         <iron-image class="financial-company-logos img150x300" 
-                     src="../../images/logos/Owens-Corning-FB.jpg"
-                     sizing="contain"
-                     preload ></iron-image>
-         <iron-image class="financial-company-logos img150x300" 
-                     src="../../images/logos/steel-rock-logo.jpg"
-                     sizing="contain"
-                     preload ></iron-image>
-         <iron-image class="financial-company-logos img150x300" 
-                     src="../../images/logos/Taylor-Metal-Products-logo.jpg"
-                     sizing="contain"
-                     preload ></iron-image>
-      </div>    
-   </div>
-   <div class="container">    
-      <div class="w1800 text-center">
-         <iron-image class="financial-company-logos img300x300" 
-                     src="../../images/logos/atas-logo.jpg"
-                     sizing="contain"
-                     preload ></iron-image>
-         <iron-image class="financial-company-logos img300x300" 
-                     src="../../images/logos/eagle-roofing-products.jpg"
-                     sizing="contain"
-                     preload ></iron-image>
-         <iron-image class="financial-company-logos img300x300" 
-                     src="../../images/logos/IKOLogo.jpg"
-                     sizing="contain"
-                     preload ></iron-image>
-      </div>    
-   </div>
+   <div class="container app-grid">
+     <iron-image class="financial-company-logos img150x300" 
+                 src="../../images/logos/NuRay-Metals.gif"
+                 sizing="contain"
+                 preload ></iron-image>
+     <iron-image class="financial-company-logos img150x300" 
+                 src="../../images/logos/Owens-Corning-FB.jpg"
+                 sizing="contain"
+                 preload ></iron-image>
+     <iron-image class="financial-company-logos img150x300" 
+                 src="../../images/logos/steel-rock-logo.jpg"
+                 sizing="contain"
+                 preload ></iron-image>
+     <iron-image class="financial-company-logos img150x300" 
+                 src="../../images/logos/Taylor-Metal-Products-logo.jpg"
+                 sizing="contain"
+                 preload ></iron-image>
+   </div>    
+   <div class="container app-grid">
+     <iron-image class="financial-company-logos img300x300" 
+                 src="../../images/logos/boral-roofing.png"
+                 sizing="contain"
+                 preload ></iron-image>
+     <iron-image class="financial-company-logos img300x300" 
+                 src="../../images/logos/eagle-roofing-products.jpg"
+                 sizing="contain"
+                 preload ></iron-image>
+     <iron-image class="financial-company-logos img300x300" 
+                 src="../../images/logos/IKOLogo.jpg"
+                 sizing="contain"
+                 preload ></iron-image>
+   </div>    
   </template>
    
   <script>

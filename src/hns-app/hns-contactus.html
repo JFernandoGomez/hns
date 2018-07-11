@@ -1,9 +1,12 @@
 <link rel="import" href="../../bower_components/polymer/polymer-element.html">
+<link rel="import" href="../../bower_components/app-layout/app-grid/app-grid-style.html">
 <link rel="import" href="hns-contact.html">
 <dom-module id="hns-contactus">
    <template>
-      <style>
+      <style include="app-grid-style">
          :host {
+            --app-grid-columns:3;
+            --app-grid-expandible-item-columns:2;  
             --app-primary-color: #204968;
             --app-secondary-color: #ef6942;
             font-family: 'Roboto', 'Noto', sans-serif;
@@ -19,27 +22,32 @@
             @apply --layout-flex;
          }
 
-         .container h1 {
+         h1 {
             font-size: 53px;
             font-weight: bold;
             text-align: center;
             margin: 0 auto;
          }
 
-         .container h2 {
+         h2 {
             font-size: 40px;
             font-weight: 300;
          }
 
-         .container p { 
-            max-width: 1200px;
+         .thankyou {
+            @apply --app-grid-expandible-item;
             font-size: 28px;
             text-align: center;
             margin: 0 auto;
          }
 
-         .container hns-contact {
-            max-width: 800px;
+         .content {
+           @apply --app-grid-expandible-item;
+           margin: 0 auto;
+         }
+
+         hns-contact {
+            @apply --app-grid-expandible-item;
             margin: 0 auto;
             color: var(--app-secondary-color);
          }
@@ -60,19 +68,23 @@
             color: var(--app-primary-color);
          }
       </style>
-
-      <div class="container">
-         <h1 class="primary-color"> CONTACT US </h1>
+      <br />
+      <br />
+      <br />
+      <div class="app-grid">
+         <h1 class="primary-color content" > CONTACT US </h1>
       </div>
-      <div class="container">
-         <p>
+      <div class="app-grid">
+         <p class="thankyou">
             Thank you for your interest in Howard &amp; Sons, Inc.,<br />
             we look forward to working with you on your next project! <br />
             Ask our team about financing options to make your next renovation even more affordable!
          </p>
       </div>
-      <div class="container bg-blue">
-         <hns-contact></hns-contact>
+      <div class="app-grid bg-blue">
+         <div class="content">
+          <hns-contact></hns-contact>
+         </div>
       </div>
    </template>
    <script>

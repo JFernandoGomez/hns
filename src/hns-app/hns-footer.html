@@ -1,0 +1,140 @@
+<link rel="import" href="../../bower_components/polymer/polymer-element.html">
+<link rel="import" href="../../bower_components/app-layout/app-grid/app-grid-style.html">
+<link rel="import" href="../../bower_components/google-map/google-map.html">
+<link rel="import" href="../../bower_components/google-map/google-map-marker.html">
+<link rel="import" href="../../bower_components/social-media-icons/social-media-icons.html">
+<link rel="import" href="../../bower_components/iron-image/iron-image.html">
+<dom-module id="hns-footer">
+   <template>
+      <style include="app-grid-style">
+         :host {
+           --app-grid-columns: 5;
+           --app-grid-expandible-item-columns:2;
+           --app-primary-color: #204968;
+           --app-secondary-color: #ef6942;
+           margin: 0 auto;
+         }
+
+
+         .bg-blue{
+            background-color: var(--app-primary-color);
+         }
+
+         .orange {
+            color: var(--app-secondary-color);
+            text-decoration: none;
+            font-size: 18px;
+         }
+         
+         .col {
+            margin: 0 auto;
+            padding: 5px 35px;
+            font-size: 18px;
+         }
+
+         .map { 
+            @apply --app-grid-expandible-item;
+         }
+         
+         .badges {
+            margin: 0 auto;
+            width: 200px;
+            height: 150px;
+            valign: bottom;
+         }
+
+         .text {
+            font-family: 'Roboto', 'Noto', sans-serif;
+            font-size: 18px;
+            text-align: left;
+         }
+         
+         p.text {
+            color: var(--app-secondary-color);
+            font-family: 'Roboto', 'Noto', sans-serif;
+            font-size: 18px;
+            text-align: left;
+
+         }
+
+         @media (max-width: 800px) {
+            :host {
+              --app-grid-columns: 2;
+              --app-grid-expandible-item-columns:2;
+            }
+         }
+
+      </style>
+         <div class="bg-blue app-grid">
+            <div class="col">
+               <p class="text">
+                  Corona Office: <br />
+                  357 N Sheridan St., #104 <br />
+                  Corona, CA 92880 <br />
+                  Phone: <a href="tel:9517776633" class="orange">951-777-6633</a> <br />
+                  Fax: 1-208-694-9322 <br />
+               <br />
+                  San Diego Office:  <br />
+                  302 Washington St, Ste 834 <br />
+                  San Diego, CA 92103
+                  Phone:<a href="tel:6193635447" class="orange"> (619)363-5447</a> <br />
+                <br />
+
+                  Hours: By appointment only <br />
+                  Email:<a href="mailto:info@hnsca.com" class="orange"> info@hnsca.com</a> <br />
+               </p>
+            </div>
+            <div class="col">
+               <p class="text">
+                  <a href="[[rootPath]]about" class="orange"> About Us</a> <br />
+                  <a href="https://howardsonsinc.tumblr.com/" target="_blank" class="orange"> Blog</a> <br />
+                  <a href="[[rootPath]]gallery" class="orange"> Gallery</a> <br />
+                  <a href="[[rootPath]]contactus" class="orange"> Contact Us</a> <br />
+                  <!--a href="[[rootPath]]services" class="orange"> Construction Services</a -->
+                  
+               </p>
+               <br />
+               <br />
+                  <iron-image class="badges" 
+                              src="../../images/footer/home-advisor-toprated.png"
+                              sizing="contain"
+                              preload ></iron-image>
+            </div>
+            <div class="col">
+               <social-media-icons icon="facebook" color="#ef6942" size="48"></social-media-icons>
+               <a href="https://www.facebook.com/Howard-Sons-Inc-1703996666539489/" class="orange" target="_blank">Howard & Sons</a> <br />
+               <social-media-icons icon="twitter" color="#ef6942" size="48"></social-media-icons>
+               <a href="https://twitter.com/hns_ca" class="orange" target="_blank">@hns_ca</a> <br />
+               <social-media-icons icon="youtube" color="#ef6942" size="48"></social-media-icons>
+               <a href="https://www.youtube.com/channel/UCMM7pYZBV3jIiTpcStROO3A" class="orange" target="_blank">Howard & Sons, Inc. </a> 
+               <br />
+               <br />
+               <a href="https://www.bbb.org/central-california-inland-empire/business-reviews/roofing-contractors/howard-sons-inc-in-corona-ca-850030178/#sealclick" target="_blank" rel="nofollow"><img src="https://seal-cencal.bbb.org/seals/blue-seal-200-65-bbb-850030178.png" style="border: 0;" alt="Howard & Sons, Inc. BBB Business Review" /></a>
+            </div>
+            <div class="col map">
+               <google-map fit-to-marker  latitude="33.884" longitude="-117.569" zoom="14"  api-key="AIzaSyAp_dbp4u4cNv_oCV1HXriLuFIx7KHdhWY" ><!--api-key="AIzaSyAp_dbp4u4cNv_oCV1HXriLuFIx7KHdhWY"-->
+                  <google-map-marker latitude="33.8847312" longitude="-117.5699203" label="Howard & Sons Inc." draggable="false"></google-map-marker>
+               </google-map>
+            </div>
+         </div>
+    </template>
+    <script>
+      class HNSFooter extends Polymer.Element {
+        static get is(){
+          return "hns-footer";
+        }
+
+        
+        constructor() {
+          super();
+        }
+
+        ready() { 
+          super.ready();
+        }
+      }
+
+      customElements.define(HNSFooter.is, HNSFooter);
+    </script>
+</dom-module>
+
