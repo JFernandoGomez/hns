@@ -20,6 +20,7 @@
 <link rel="lazy-import" href="hns-about.html">
 <link rel="lazy-import" href="hns-gallery.html">
 <link rel="lazy-import" href="hns-contactus.html">
+<link rel="lazy-import" href="hns-testimonials.html">
 <dom-module id="hns-app">
    <template>
       <style include="app-grid-style">
@@ -32,31 +33,10 @@
             display: block;
          }
 
-         app-header {
-            --app-header-background-front-layer: {
-              background-repeat: no-repeat;
-              background-size:  cover;
-              background-image: url(../../images/header-img.png) ;
-            };
-
-
-         /* --app-header-background-rear-layer: {
-              background-color: var(--app-primary-color);
-              color: white;
-            };*/
-            color: var(--app-primary-color);
-            background-color: var(--app-primary-color);
-            height: 330px;
-         }
-
         .fixmenu {
           margin: 0 auto;
           height: 320px;
         }
-
-         app-header app-paper-icon {
-            --app-icon-button-ink-color: #fff;
-         }
 
          app-toolbar {
           background-color: var(--app-primary-color); 
@@ -134,36 +114,6 @@
 
          
          @media (max-width: 800px) {
-            
-            app-header {
-              height: 220px;
-              --app-header-background-front-layer: {
-                background-image: url(../../images/header-img-small.png);
-                background-repeat: no-repeat;
-                background-size: cover;
-              };    
-            };
-
-
-             app-toolbar a {
-                @apply --horizontal-layout;
-                padding: 10px;
-                font-family: roboto;
-                font-size: 15px;
-                color: white;
-                text-decoration:none; 
-             }
-
-            .fixmenu {
-              margin: 0 auto;
-              height: 220px;
-            }
-
-
-            /*.container {
-               @apply --layout-vertical;
-            }*/
-            
             paper-menu-button {
                display: block;
             }
@@ -179,22 +129,76 @@
             }
          }
 
-         @media(max-width: 1999px) {
-           
-            app-header {
-              height: 280px;
-              --app-header-background-front-layer: {
-                background-repeat: no-repeat;
-                background-size: cover;
-                background-image: url(../../images/header-img-medium.png) ;
-              };    
-            };
+         /*** header styles **/
+.hcontainer {
+  overflow: hidden;
+  height: calc(30vh);
+  width: calc(100vw);
+  background-color: #ef6942;
+}
 
-            .fixmenu {
-              margin: 0 auto;
-              height: 280px;
-            }
-         }
+.shaped-left {
+  height: 30vh;
+  width: 40vw;
+  float: left;
+  background: white;
+  shape-outside: polygon(0 0, 0 100%, 100% 100%, 80% 0);
+  shape-margin: 20px;
+  clip-path: polygon(0 0, 0 100%, 100% 100%, 80% 0);
+}
+
+.shaped-right {
+  height:30vh;
+  width: 40vw;
+  background-color: #204968;
+  float: right;
+  shape-outside: polygon(100% 0, 20% 0, 0 100%, 100% 100% );
+  shape-margin: 20px;
+  clip-path: polygon(100% 0, 20% 0, 0 100%, 100% 100%);
+}
+
+.shaped-right h1 {
+
+    font-size: calc(5vh);
+    font-weight: bold;
+    color: #204968;
+    padding: 8px;
+    background-color: #ef6942;
+    width: calc(40vw);
+    text-align: center;
+}
+
+
+.shaped-right h1 a {
+
+    font-size: calc(5vh);
+    font-weight: bold;
+    color: #204968;
+    text-align: center;
+    text-decoration:none;
+}
+
+.warranty_img {
+  width: calc(10vw);
+  height: calc(31vh);
+  margin: 0 auto;
+      margin-left: calc(3vw);
+}
+
+.hns_logo {
+  width: calc(24vw);
+}
+
+.phones {
+    width: calc(40vw);
+    font-size: calc(4vh);
+    color: #fff;
+    text-align: center;
+    font-weight: bold;
+    margin:0;
+    font-family: 'Roboto', 'Noto', sans-serif;
+}
+
       </style> 
       <app-location route="{{route}}"
                url-space-regex="^[[rootPath]]"></app-location>
@@ -207,13 +211,27 @@
 
       <app-header-layout>
          <app-header  slot="header" condenses reveals effects="parallax-background">
-            <div class="fixmenu"> </div>
+           <!--- <div class="fixmenu"> </div-->
+         <div class="hcontainer">
+            <div class="shaped-left">
+                <img src="../../images/hns-logo.png" class="hns_logo" />
+            </div>
+            <div class="shaped-right">
+                <h1><a href="[[rootPath]]contactus"> GET A FREE QUOTE</a></h1> 
+                <p class="phones"> 951-402-7663 </p>
+                <p class="phones"> 619-363-5447 </p>
+            </div>
+            <div class="hcontent">
+                <img src="../../images/warranty.png" class="warranty_img"/>
+            </div>
+         </div>
             <app-toolbar class="app-grid"> 
                   <a href="[[rootPath]]home">Home</a>
                   <a href="[[rootPath]]gallery">Gallery</a>
                   <a href="[[rootPath]]about">About Us</a>
                   <a href="[[rootPath]]contactus">Contact Us</a>
                   <a href="https://howardsonsinc.tumblr.com/" target="_blank">Blog</a>
+                  <a href="[[rootPath]]testimonials">Testimonials</a>
             </app-toolbar>
          </app-header>
 
@@ -226,6 +244,7 @@
             <hns-about name="about"></hns-about>
             <hns-gallery name="gallery"></hns-gallery>
             <hns-contactus name="contactus"></hns-contactus>
+            <hns-testimonials name="testimonials"></hns-testimonials>
          </iron-pages>
       
         <hns-footer></hns-footer> 
