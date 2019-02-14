@@ -1,0 +1,283 @@
+<link rel="import" href="../../bower_components/polymer/polymer-element.html">
+<link rel="import" href="../../bower_components/app-layout/app-grid/app-grid-style.html">
+<link rel="import" href="../../bower_components/iron-image/iron-image.html">
+<link href="https://fonts.googleapis.com/css?family=Raleway" rel="stylesheet">
+<dom-module id="hns-testimonials">
+  <template>
+    <style include="app-grid-style">
+      :host {
+        --app-grid-columns:4;
+        --app-grid-expandible-item-columns:2;
+        --app-primary-color: #204968;
+        --app-secondary-color: #ef6942;
+        font-family: 'Roboto', 'Noto', sans-serif;
+      }
+      
+      h1 {
+        margin: 0 auto;
+        color: var(--app-secondary-color);        
+        font-family: 'Raleway', sans-serif;
+        text-align: center;
+      }
+
+      .comment {
+        margin: 15px 15px;
+        background-color: var(--app-primary-color);
+        color: var(--app-secondary-color);
+      }
+
+      .comment p {
+        padding: 10px;
+        font-size: 29px;
+        font-family: 'Raleway', sans-serif;
+      }
+
+      .wide {
+        @apply --app-grid-expandible-item;
+      }
+
+      .imgContainer {
+        margin: auto 0;
+        margin-top: 25px;
+      }
+
+      .img150x300 {
+        margin: 0 auto;
+        width: 300px;
+        height: 150px;
+      }
+    </style>
+    <br />
+    <br />
+    <br />
+    <div class="app-grid">
+      <div> <!-- Column 1-->
+        <div class="comment">
+          <p> 
+            &quot;<i>Thank you for the work you did on our house. <br/>
+              Everyone was so hardworking and professional. <br/>
+              Dustyn was very easy and nice to work with and we appreciate all the hardwork from everyone.</i> &quot;
+                <br/>
+              &mdash;<strong>John and Beverly, </strong>&mdash; <br/>
+              Diamond Bar
+          </p>
+        </div>
+
+        <div class="comment">
+          <p>
+          &quot;<i>Ignacio was great. The work was completed in a timely professional manner with both before and after photos provided as well as a 5 year warranty. </i>&quot; <br />
+            &mdash;<strong>Carol </strong>&mdash; <br/>
+            Chula Vista, CA
+          </p>
+        </div>
+        
+        <div class="comment">
+          <p>
+          &quot;<i> The technician was very professional, competent,efficient. Their fee was average, so they did not over charge me. I kept his business card for my future reference. </i>&quot; <br />
+            &mdash;<strong>Behzad </strong>&mdash; <br/>
+            La Jolla, CA
+          </p>
+        </div>
+
+        <!--div class="comment">
+          <p>
+            &quot;<i>Very good customer service </i>&quot;
+            &mdash;<strong>Joanna </strong>&mdash; <br/>
+            Riverside, CA
+          </p>
+        </div>
+
+        <div class="comment">
+          <p>
+            &quot;<i> Good and honest. On time and worked hard.</i>&quot;
+            &mdash;<strong>Angie </strong>&mdash; <br/>
+            Sun City, CA
+          </p>
+        </div-->
+
+        <div class="comment">
+          <p>
+          &quot;<i>Had old fashioned and dry rotted fascia boards on house and garage replaced. They did a nice job in a timely manner for a fair price. Didn't try to up sell.Seemed honest enough. Some of the work I thought would need doing they actually said wasn't necessary. </i>&quot;<br/>
+            &mdash;<strong>Joe H. </strong>&mdash; <br/>
+            Riverside, CA
+          </p>
+        </div>
+      </div>
+      
+      <div> <!--Column 2-->
+        <div class="comment">
+          <p>
+            &quot;<i>I am very impressed and happy with the work done by Howard & Sons Inc. I almost didn't know there was work being done on my roof because everyday that the crew was done they cleaned up so well.  
+              <br />
+              Thank you to Howard & Sons.  I would recommend them to anyone looking to get roofing work done.  </i>&quot; <br />
+            &mdash;<strong>Linda Christian, </strong>&mdash; <br/>
+            CA
+          </p>
+        </div>
+
+        <div class="comment">
+          <p>
+          &quot;<i>Ignacio Peinado came to review my roof and make recommendations and I was so pleased with him. He was very polite. I think he did a thorough job and I would certainly have them do any work that I need. And they came through HomeAdvisor </i>&quot; <br/>
+            &mdash;<strong>Mary, </strong>&mdash; <br/>
+            Oceanside, CA
+          </p>
+        </div>
+        <div class="comment">
+          <p>
+          &quot;<i>I am waiting to see if the leaks were repaired. We haven’t had much rain lately. But I am confident that everything went well </i>&quot;<br />
+            &mdash;<strong>Hans, </strong>&mdash; <br/>
+            Lakeside, CA
+          </p>
+        </div>
+
+        <div class="comment">
+          <p>
+            &quot;<i>Very good customer service </i>&quot;
+            &mdash;<strong>Joanna </strong>&mdash; <br/>
+            Riverside, CA
+          </p>
+        </div>
+      </div>
+      
+      <div> <!--Column 3-->
+
+        
+        <div class="comment">
+          <p>
+          &quot;<i> I was very impressed with the professionalism of this company, the quality of the work, and flexibility with scheduling and with the repair needed. I would highly recommend their services!</i>&quot; <br />
+            &mdash;<strong>Nicole </strong>&mdash; <br/>
+            San Diego, CA
+          </p>
+        </div>
+        
+
+        <div class="comment">
+          <p>
+          &quot;<i> Howard & Sons Roofing is as good as it gets. Cesar and his team are awesome - these guys are meticulous and do what it takes to get the job done! <br />
+            I would highly recommend Howard & Sons for your roofing needs, you can't go wrong in my opinion.</i>&quot; <br/>
+            &mdash;<strong>Steve </strong>&mdash; <br/>
+            Valley Center, CA
+          </p>
+        </div>
+        
+        <div class="comment">
+          <p>
+          &quot;<i>Howard and Sons was very polite, caring and proficient. The technician Cesar was always making sure we were happy with the job. We never realized how much work replacing a roof was and Howard and Sons made it very easy for us. We never had to leave the house as the noise was a lot less than we expected and we were never bothered by the work or the workers. We would highly recommend Howard and Sons to anyone looking for a new roof or roof repair. The entire team was great! </i>&quot; <br/>
+            &mdash;<strong>Collete </strong>&mdash; <br/>
+            San Diego, CA
+          </p>
+        </div>
+      </div>  
+      
+      <div> <!--Column 4-->
+      
+        <!--div class="comment">
+          <p>
+          &quot;<i>Had old fashioned and dry rotted fascia boards on house and garage replaced. They did a nice job in a timely manner for a fair price. Didn't try to up sell.Seemed honest enough. Some of the work I thought would need doing they actually said wasn't necessary. </i>&quot;<br/>
+            &mdash;<strong>Joe H. </strong>&mdash; <br/>
+            Riverside, CA
+          </p>
+        </div-->
+
+        <div class="comment">
+          <p>
+          &quot;<i>They were very efficient., quick, and hardly took breaks and worked all day. We had them come back because a tile was pulling up and they came back promptly the next day. Over all did a wonderful job and very pleased. </i>&quot; <br />
+            &mdash;<strong>Ray </strong>&mdash; <br/>
+            Nuevo, CA
+          </p>
+        </div>
+        
+        <div class="comment">
+          <p>
+          &quot;<i>After several bids we decided on Howard and Sons roofing. They included upgrading our old outdated vents with a ridge vent and low profile vents. Ignacio Cesar Peinado was very professional and took the time to make sure we understood everything. He worked around our solar company scheduling and his staff were on time. He provided communication throughout each phase of our roof replacement and even provided cool drone photos upon completion. He was always available to answer any and all of our questions. I would highly recommend Howard and Sons roofing. </i>&quot;<br />
+            &mdash;<strong>Leanne</strong>&mdash; <br/>
+            Likeside, CA
+          </p>
+        </div>
+        <div class="comment">
+          <p>
+            &quot;<i> Good and honest. On time and worked hard.</i>&quot;
+            &mdash;<strong>Angie </strong>&mdash; <br/>
+            Sun City, CA
+          </p>
+        </div>
+      </div>
+
+      <div class="wide"> <!--Wide 1-->
+
+        <div class="comment">
+          <p> 
+            &quot;<i>
+              We actually had six different companies give us estimates for replacing our roof.  All but one company measured the roof exactly the same.  One company measured it 4 square larger but told us we would be credited for the roofing not used.  We liked Dustyn from the very first day that he came ut to do the estimate.  He was always very professional.  He helped us with getting all the information to our insurance company.  Of the diz companies we got the estimates from there were only two we were considering.  One of the reasons we chose Dustyn's Company was because of Dustyn.  He did everything in his power to help us not only with the insurance company but in getting all the information to our morgage company so that we could deposit the insurance check.  The mortgage company needed information faxed over proving we were actually going to use the money for a new roof.  The crew that arrived to tear off the old roof did so in a timely manner.  All the old roofing material was not only stripped off but hauled away. WE were very impressed by the crew.  The crew that installed the roof was very professional arriving in uniform, working constantly and cleaning up any trash from the installation.  We found maybe 2 or 3 nails after the job was complete.  Our neighbors even remarked on how impressed they were by the crew.  One even told us the roofers replacing their roof left quite a mess.  We would definitely recommend Dustyn to anyone in need of a new roof or repair.  We would definitely use them again. </i> &quot; 
+              <br/>
+              &mdash;<strong>Michel, </strong>&mdash; <br/>
+              Hemet, CA
+          </p>
+        </div>
+      </div>
+      <div class="wide"> <!--Wide 2-->
+        <div class="comment">
+          <p>
+            &quot;<i>What a great job Howard & Sons did for my roof leak in east Chula Vista! Awesome company. Cesar Peinado, H & Sons San Diego County Regional Manager, a veteran like me, was very professional and extremely helpful, he and his team did a very thorough roof inspection and found the true source of the leaks (which the solar company had not). Cesar provided great details and pictures. He responded at all hours to my texts and emails. He saved me money by creating a plan so only the necessary parts of the roof needed to be replaced, and even helped speak to my insurance company with me, which resulted in me getting reimbursed for thousands of dollars more than they previously had told me. Then the lead installer, also named Cesar, came out and did extra things like chalking a line and meeting the solar people (who had to remove and change solar mounts) so they did their job correctly, so the roofing could be done right. All the Howard & Sons folks were great to work with and very polite to my family. If I could give a rating higher than 5 stars I would! </i>&quot;
+              <br/>
+              &mdash;<strong>William </strong>&mdash; <br/>
+              Chula Vista, CA
+          </p>
+        </div>
+      </div>
+    </div>
+  <!-- We Proudly Work With -->
+  <h1> We Proudly Work With</h1>
+
+  <div class="imgContainer app-grid">
+     <iron-image class="img150x300" 
+                 src="../../images/clients/burger-king.png"
+                 sizing="contain"
+                 preload ></iron-image>
+     <iron-image class="img150x300" 
+                 src="../../images/clients/chick-fill.png"
+                 sizing="contain"
+                 preload ></iron-image>
+     <iron-image class="img150x300" 
+                 src="../../images/clients/download.png"
+                 sizing="contain"
+                 preload ></iron-image>
+     <iron-image class="img150x300" 
+                 src="../../images/clients/familydollar.png"
+                 sizing="contain"
+                 preload ></iron-image>
+  </div>
+  <div class="imgContainer app-grid">
+     <iron-image class="img150x300" 
+                 src="../../images/clients/Holiday_Inn_Logo.svg.png"
+                 sizing="contain"
+                 preload ></iron-image>
+     <iron-image class="img150x300" 
+                 src="../../images/clients/jack-in-the-box.png"
+                 sizing="contain"
+                 preload ></iron-image>
+     <iron-image class="img150x300" 
+                 src="../../images/clients/tacobell.jpg"
+                 sizing="contain"
+                 preload ></iron-image>
+     <iron-image class="img150x300" 
+                 src="../../images/clients/Travelodge.jpg"
+                 sizing="contain"
+                 preload ></iron-image>
+  </div>
+
+  </template>
+  <script>
+    class HnsTestimonials extends Polymer.Element {
+      static get is(){
+        return 'hns-testimonials';
+      }
+
+      static get properties() {
+        return {};
+      }
+    }
+
+    window.customElements.define(HnsTestimonials.is, HnsTestimonials);
+  </script>
+</dom-module>
