@@ -42,6 +42,23 @@
          background-size: cover;
          color: var(--app-primary-color);
          text-align:center;
+         position: relative;
+      }
+
+      .header-badge {
+         margin: 10px auto;
+         width: 200px;
+         height: 150px;
+         vertical-align: bottom;
+         position: absolute;
+         left: 10px;
+         top: 10px;
+      }
+
+      .header-badge .badge {
+         display: block;
+         width: 100%;
+         height: 100%;
       }
 
       .section {
@@ -534,7 +551,14 @@
    <app-location route="{{route}}" use-hash-as-path></app-location>
    <app-route route="{{route}}" pattern="[[rootPath]]:section" data="{{data}}" ></app-route>
     
-   <header></header>
+   <header>
+      <a href="https://www.sandiegoapprovedhomepros.com/" target="_blank" class="header-badge">
+         <iron-image class="badge" 
+                     src="../../images/home-pro-seal.png"
+                     sizing="contain"
+                     preload ></iron-image>
+      </a>
+   </header>
  
   <div class="container app-grid">
     <iron-image class="financial-company-logos img150x300" sizing="contain" src="../../images/logos/Owens-Corning-FB.jpg"></iron-image>
@@ -675,7 +699,7 @@
    <div class="app-grid  bg-blue">
       <div class="max-w1000 bg-blue">
          <google-youtube
-                     video-id="OmvCojQX3EI" 
+                     video-id="7KMI5LeeibI" 
                      rel="0"
                      fluid="true"
                      autoplay="0"
